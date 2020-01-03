@@ -1,0 +1,48 @@
+environment:
+  USER:
+    secure: IsELFpoJJ0Ql+0ZttxU3YQ==
+  PASS:
+    secure: lGVeEGKu1SPlvj+RQ2r8Qg==
+  matrix:
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      PYTHON: "C:/Python27-x64"
+    - PYTHON: "C:/Python35-x64"
+    - PYTHON: "C:/Python36-x64"
+    - PYTHON: "C:/Python37-x64"
+    - PYTHON: "C:/Python38-x64"
+
+matrix:
+  fast_finish: true
+
+install:
+  - SET VS90COMNTOOLS=%VS140COMNTOOLS%
+
+build_script:
+  - cmd: |
+      "%PYTHON%/python.exe" -m pip install --upgrade pip
+      "%PYTHON%/python.exe" -m pip install --upgrade setuptools wheel numpy
+
+      cd src
+      "%PYTHON%/python.exe" setup.py build
+
+      copy ..\bin\*.* ..\wheel\dbr\
+      cd build\lib.win-*\
+      copy *.* ..\..\..\wheel\dbr\
+      cd ..\..\..\wheel\
+
+      "%PYTHON%/python.exe" setup.py bdist_wheel
+
+artifacts:
+  - path: wheel\dist\*.whl
+    name: wheels
+
+deploy_script:
+  - ps: |
+      if($env:APPVEYOR_REPO_TAG -eq 'true') {
+        Write-Output ("Deploying " + $env:APPVEYOR_REPO_TAG_NAME + " to PyPI...")
+        &"${Env:PYTHON}/python.exe" -m pip install twine
+        &"${Env:PYTHON}/python.exe" -m twine upload -u ${Env:USER} -p ${Env:PASS} --skip-existing dist/*.whl
+      } else {
+        Write-Output "No tag for deployment"
+      }
+      
