@@ -15,7 +15,7 @@ import sys
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 class BinaryDistribution(Distribution):
@@ -72,7 +72,7 @@ setup(
     #
     # This field corresponds to the "Description-Content-Type" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#description-content-type-optional
-    long_description_content_type='text/markdown',  # Optional (see note above)
+    # long_description_content_type='text/markdown',  # Optional (see note above)
 
     # This should be a valid link to your project's main homepage.
     #
@@ -118,6 +118,8 @@ setup(
         'Programming Language :: C++',
         'Programming Language :: Python :: Implementation :: CPython',
         'Operating System :: Microsoft :: Windows :: Windows 10',
+        'Operating System :: POSIX',
+        'Operating System :: MacOS',
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Image Recognition',
         'Topic :: Software Development',
@@ -157,5 +159,5 @@ setup(
 
     distclass=BinaryDistribution,
 
-    platforms=['Mac os']
+    platforms=['MacOS']
 )
