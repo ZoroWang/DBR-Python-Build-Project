@@ -34,7 +34,7 @@ typedef void* HANDLE;
 * Dynamsoft Barcode Reader - C/C++ APIs Description.
 */
 
-#define DBR_VERSION                  "7.2.2.1113"
+#define DBR_VERSION                  "7.3.0.1224"
 
 #pragma region ErrorCode
 
@@ -230,7 +230,7 @@ typedef void* HANDLE;
 */
 typedef enum
 {
-	/**All supported formats */
+	/**All supported formats in BarcodeFormat group 1*/
 #if defined(_WIN32) || defined(_WIN64)
 	BF_ALL = 0xFE0FFFFF,
 #else
@@ -242,9 +242,6 @@ typedef enum
 
 	/**Combined value of BF_GS1_DATABAR_OMNIDIRECTIONAL, BF_GS1_DATABAR_TRUNCATED, BF_GS1_DATABAR_STACKED, BF_GS1_DATABAR_STACKED_OMNIDIRECTIONAL, BF_GS1_DATABAR_EXPANDED, BF_GS1_DATABAR_EXPANDED_STACKED, BF_GS1_DATABAR_LIMITED*/
 	BF_GS1_DATABAR = 0x0003F800,
-
-	/**Combined value of BF_USPSINTELLIGENTMAIL, BF_POSTNET, BF_PLANET, BF_AUSTRALIANPOST, BF_UKROYALMAIL. Not supported yet. */
-	BF_POSTALCODE = 0x01F00000,
 	
 	/**Code 39 */
 	BF_CODE_39 = 0x1,
@@ -303,21 +300,6 @@ typedef enum
 	/**Patch code. */
 	BF_PATCHCODE = 0x00040000,
 
-	/**USPS Intelligent Mail. Not supported yet. */
-	BF_USPSINTELLIGENTMAIL = 0x00100000,
-
-	/**Postnet. Not supported yet. */
-	BF_POSTNET = 0x00200000,
-
-	/**Planet. Not supported yet. */
-	BF_PLANET = 0x00400000,
-
-	/**Australian Post. Not supported yet. */
-	BF_AUSTRALIANPOST = 0x00800000,
-
-	/**UK Royal Mail. Not supported yet. */
-	BF_UKROYALMAIL = 0x01000000,
-
 	/**PDF417 */
 	BF_PDF417 = 0x02000000,
 
@@ -362,8 +344,26 @@ typedef enum
 	/**No barcode format in BarcodeFormat group 2*/
 	BF2_NULL = 0x00,
 
+	/**Combined value of BF2_USPSINTELLIGENTMAIL, BF2_POSTNET, BF2_PLANET, BF2_AUSTRALIANPOST, BF2_RM4SCC. */
+	BF2_POSTALCODE = 0x01F00000,
+
 	/**Nonstandard barcode */
-	BF2_NONSTANDARD_BARCODE = 0x01
+	BF2_NONSTANDARD_BARCODE = 0x01,
+
+	/**USPS Intelligent Mail. */
+	BF2_USPSINTELLIGENTMAIL = 0x00100000,
+
+	/**Postnet. */
+	BF2_POSTNET = 0x00200000,
+
+	/**Planet. */
+	BF2_PLANET = 0x00400000,
+
+	/**Australian Post. */
+	BF2_AUSTRALIANPOST = 0x00800000,
+
+	/**Royal Mail 4-State Customer Barcode. */
+	BF2_RM4SCC = 0x01000000
 }BarcodeFormat_2;
 
 /**
@@ -640,6 +640,9 @@ typedef enum
 	/**Localizes barcodes by groups of marks.This is optimized for DPM codes. */
 	LM_STATISTICS_MARKS = 0x20,
 	
+	/**Localizes barcodes by groups of connected blocks and lines.This is optimized for postal codes. */
+	LM_STATISTICS_POSTAL_CODE = 0x40,
+
 	/**Skips localization. */
 	LM_SKIP = 0x00
 	
@@ -913,6 +916,42 @@ typedef enum
 }IMResultDataType;	
 
 /**
+* @enum ScaleUpMode
+*
+* Describes the scale up mode .
+*/
+typedef enum
+{
+	/**The library chooses an interpolation method automatically to scale up.*/
+	SUM_AUTO = 0x01,
+
+	/**Scales up using the linear interpolation method. Check @ref SUM for available argument settings.*/
+	SUM_LINEAR_INTERPOLATION = 0x02,
+
+	/**Scales up using the nearest-neighbour interpolation method. Check @ref SUM for available argument settings.*/
+	SUM_NEAREST_NEIGHBOUR_INTERPOLATION = 0x04,
+
+	/**Skip the scale-up process.*/
+	SUM_SKIP = 0x00
+
+}ScaleUpMode;
+
+/**
+* @enum AccompanyingTextRecognitionMode
+*
+* Describes the accompanying text recognition mode.
+*/
+typedef enum
+{
+	/** Recognizes accompanying texts using the general algorithm. Check @ref ATRM for available argument settings.*/
+	ATRM_GENERAL = 0x01,
+
+	/** Skips the accompanying text recognition. */
+	ATRM_SKIP = 0x00
+
+}AccompanyingTextRecognitionMode;
+
+/**
  * @} defgroup Enum Enumerations
  */
 
@@ -1141,7 +1180,7 @@ typedef struct tagFurtherModes
 	*/
 	DPMCodeReadingMode dpmCodeReadingModes[8];
 
-	/**Sets the mode and priority for deformation resisting. Not supported yet.
+	/**Sets the mode and priority for deformation resisting.
 	*
 	* @par Value range:
 	* 	    Each array item can be any one of the DeformationResistingMode Enumeration items
@@ -1153,7 +1192,7 @@ typedef struct tagFurtherModes
 	*/
 	DeformationResistingMode deformationResistingModes[8];
 
-	/**Sets the mode and priority to complement the missing parts in the barcode. Not supported yet.
+	/**Sets the mode and priority to complement the missing parts in the barcode.
 	*
 	* @par Value range:
 	* 	    Each array item can be any one of the BarcodeComplementMode Enumeration items.
@@ -1177,10 +1216,22 @@ typedef struct tagFurtherModes
 	*/
 	BarcodeColourMode barcodeColourModes[8];
 
+	/**Sets the mode and priority to recognize accompanying text.
+	*
+	* @par Value range:
+	* 	    Each array item can be any one of the AccompanyingTextRecognitionMode Enumeration items
+	* @par Default value:
+	* 	    [ATRM_SKIP,ATRM_SKIP,ATRM_SKIP,ATRM_SKIP,ATRM_SKIP,ATRM_SKIP,ATRM_SKIP,ATRM_SKIP]
+	* @par Remarks:
+	*     The array index represents the priority of the item. The smaller index is, the higher priority is.
+	* @sa AccompanyingTextRecognitionMode
+	*/
+	AccompanyingTextRecognitionMode accompanyingTextRecognitionModes[8];
+
 	/**Reserved memory for struct. The length of this array indicates the size of the memory reserved for this struct.
 	*
 	*/
-	char reserved[64];
+	char reserved[32];
 }FurtherModes;
 
 /**
@@ -1414,10 +1465,22 @@ typedef struct tagPublicRuntimeSettings
 	*/
 	int minResultConfidence;
 
+	/**Sets the mode and priority to control the sampling methods of scale-up for linear barcode with small module sizes.
+	*
+	* @par Value range:
+	* 	    Each array item can be any one of the ScaleUpMode Enumeration items.
+	* @par Default value:
+	* 	    [SUM_AUTO, SUM_SKIP, SUM_SKIP, SUM_SKIP, SUM_SKIP, SUM_SKIP, SUM_SKIP, SUM_SKIP]
+	* @par Remarks:
+	*		The array index represents the priority of the item. The smaller the index, the higher the priority.
+	* @sa ScaleUpMode
+	*/
+	ScaleUpMode scaleUpModes[8];
+
 	/**Reserved memory for struct. The length of this array indicates the size of the memory reserved for this struct.
 	*
 	*/
-	char reserved[116];
+	char reserved[84];
 }PublicRuntimeSettings;
 
 /**
@@ -1526,10 +1589,22 @@ typedef struct tagFrameDecodingParameters
 	*/
 	int fps;
 
+	/**Sets whether to filter frames automatically.
+	*
+	* @par Value range:
+	* 	    [0,1]
+	* @par Default value:
+	* 	    1
+	* @par Remarks:
+	*		0:Diable filtering frames automatically.
+	*		1:Enable filtering frames automatically.
+	*/
+	int autoFilter;
+
 	/**Reserved memory for the struct. The length of this array indicates the size of the memory reserved for this struct.
 	*
 	*/
-	char reserved[32];
+	char reserved[28];
 }FrameDecodingParameters;
 
 /**
@@ -3008,8 +3083,8 @@ extern "C" {
 			int currentTemplateCount = DBR_GetParameterTemplateCount(barcodeReader);
 			int templateIndex = 1;
 			// notice that the value of 'templateIndex' should less than currentTemplateCount.
-			char errorMessage[256];
-			DBR_GetParameterTemplateName(barcodeReader, templateIndex, errorMessage, 256);
+			char templateName[256];
+			DBR_GetParameterTemplateName(barcodeReader, templateIndex, templateName, 256);
 			DBR_DestroyInstance(barcodeReader);
 	* @endcode
 	*
@@ -3094,7 +3169,7 @@ extern "C" {
 
 	/**
 	 * Outputs runtime settings and save them into a settings file (JSON file).
-	 * X
+	 * 
 	 * @param [in] barcodeReader Handle of the barcode reader instance.
 	 * @param [in] pFilePath The path of the output file which stores current settings.
 	 * @param [in] pSettingsName A unique name for declaring current runtime settings.
@@ -3941,7 +4016,7 @@ public:
 	*		Check @ref ModesArgument for available argument settings
 	*
 	*/
-	int GetModeArgument(const char *pModesName, const int index, const char *pArgumentName, char valueBuffer[], const int valueBufferLen, char errorMsgBuffer[], const int errorMsgBufferLen);
+	int GetModeArgument(const char *pModesName, const int index, const char *pArgumentName, char valueBuffer[], const int valueBufferLen, char errorMsgBuffer[] = NULL, const int errorMsgBufferLen = 0);
 	/**
 	* @}
 	*/
@@ -4098,8 +4173,8 @@ public:
 			int currentTemplateCount = reader->GetParameterTemplateCount();
 			int templateIndex = 1;
 			// notice that the value of 'templateIndex' should less than currentTemplateCount.
-			char errorMessage[256];
-			reader->GetParameterTemplateName(templateIndex, errorMessage, 256);
+			char templateName[256];
+			reader->GetParameterTemplateName(templateIndex, templateName, 256);
 			delete reader;
 	* @endcode
 	*
@@ -4161,7 +4236,6 @@ public:
 	 * Outputs runtime settings to a string.
 	 * 
 	 * @param [in,out] content The output string which stores the contents of current settings.
-	 * @param [in] contentLen The length of the output string.
 	 * @param [in] pSettingsName A unique name for declaring current runtime settings.
 	 * 			   
 	 * @return Returns error code. Returns 0 if the function operates successfully. You can call
@@ -4408,7 +4482,6 @@ public:
 	/**
 	 * @}  
 	 */
-
 private:
 
 

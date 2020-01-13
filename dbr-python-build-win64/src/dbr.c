@@ -29,7 +29,7 @@ static PyObject * ErrorOut(PyObject *m)
 {
     struct module_state *st = GETSTATE(m);
     PyErr_SetString(st->error, "something bad happened");
-    return NULL;
+	Py_RETURN_NONE;
 }
 
 #define DBR_NO_MEMORY 0
@@ -48,195 +48,6 @@ static PyObject * ErrorOut(PyObject *m)
 typedef struct
 {
     PyObject_HEAD
-    PyObject *COLOR_CLUTERING_MODE;
-    PyObject *COLOR_CONVERSION_MODE;
-    PyObject *GRAY_SCALE_TRANSFORMATION_MODE;
-    PyObject *REGION_PREDETECTION_MODE;
-    PyObject *IMAGE_PREPROCESSING_MODE;
-    PyObject *TEXTURE_DETECTION_MODE;
-    PyObject *TEXTURE_FILTER_MODE;
-    PyObject *TEXT_ASSISTED_CORRECTION_MODE;
-    PyObject *DPM_CODE_READING_MODE;
-    PyObject *DEFORMATION_RESISTING_MODE;
-    PyObject *BARCODE_COMPLEMENT_MODE;
-    PyObject *BARCODE_COLOR_MODE;
-
-    // Enum:Barcode formats 
-    int BF_ALL;
-    int BF_ONED;
-    int BF_GS1_DATABAR;
-    int BF_POSTALCODE;
-    int BF_CODE_39;
-    int BF_CODE_128;
-    int BF_CODE_93;
-    int BF_CODABAR;
-    int BF_ITF;
-    int BF_EAN_13;
-    int BF_EAN_8;
-    int BF_UPC_A;
-    int BF_UPC_E;
-    int BF_INDUSTRIAL_25;
-    int BF_CODE_39_EXTENDED;
-    int BF_GS1_DATABAR_OMNIDIRECTIONAL;
-    int BF_GS1_DATABAR_TRUNCATED;
-    int BF_GS1_DATABAR_STACKED;
-    int BF_GS1_DATABAR_STACKED_OMNIDIRECTIONAL;
-    int BF_GS1_DATABAR_EXPANDED;
-    int BF_GS1_DATABAR_EXPANDED_STACKED;
-    int BF_GS1_DATABAR_LIMITED;
-    int BF_PATCHCODE;
-    int BF_USPSINTELLIGENTMAIL;
-    int BF_POSTNET;
-    int BF_PLANET;
-    int BF_AUSTRALIANPOST;
-    int BF_UKROYALMAIL;
-    int BF_PDF417;
-    int BF_QR_CODE;
-    int BF_DATAMATRIX;
-    int BF_AZTEC;
-    int BF_MAXICODE;
-    int BF_MICRO_QR;
-    int BF_MICRO_PDF417;
-    int BF_GS1_COMPOSITE;
-    int BF_NULL;
-    // EnumBarcodeReader_2
-    int BF2_NULL;
-    int BF2_NONSTANDARD_BARCODE;
-    // EnumBarcodeComplementMode
-    int BCM_AUTO;
-    int BCM_GENERAL;
-    int BCM_SKIP;
-    // EnumImagePixelFormat
-    int IPF_BINARY;
-    int IPF_BINARYINVERTED;
-    int IPF_GRAYSCALED;
-    int IPF_NV21;
-    int IPF_RGB_565;
-    int IPF_RGB_555;
-    int IPF_RGB_888;
-    int IPF_ARGB_8888;
-    int IPF_RGB_161616;
-    int IPF_ARGB_16161616;
-    // EnumResultType
-    int RT_STANDARD_TEXT;
-    int RT_RAW_TEXT;
-    int RT_CANDIDATE_TEXT;
-    int RT_PARTIAL_TEXT;
-    // EnumTerminatePhase
-    int TP_REGION_PREDETECTED;
-    int TP_IMAGE_PREPROCESSED;
-    int TP_IMAGE_BINARIZED;
-    int TP_BARCODE_LOCALIZED;
-    int TP_BARCODE_TYPE_DETERMINED;
-    int TP_BARCODE_RECOGNIZED;
-    // EnumBarcodeColourMode
-    int BICM_DARK_ON_LIGHT;
-    int BICM_LIGHT_ON_DARK;
-    int BICM_DARK_ON_DARK;
-    int BICM_LIGHT_ON_LIGHT;
-    int BICM_DARK_LIGHT_MIXED;
-    int BICM_DARK_ON_LIGHT_DARK_SURROUNDING;
-    int BICM_SKIP;
-    // EnumBinarizationMode
-    int BM_AUTO;
-    int BM_LOCAL_BLOCK;
-    int BM_SKIP;
-    // EnumColourClusteringMode
-    int CCM_AUTO;
-    int CCM_GENERAL_HSV;
-    int CCM_SKIP;
-    // EnumColourImageConvertMode
-    int CICM_GENERAL;
-    int CICM_SKIP;
-    // EnumDPMCodeReadingMode
-    int DPMCRM_AUTO;
-    int DPMCRM_GENERAL;
-    int DPMCRM_SKIP;
-    // EnumRegionPredetectionMode
-    int RPM_AUTO;
-    int RPM_GENERAL;
-    int RPM_GENERAL_RGB_CONTRAST;
-    int RPM_GENERAL_GRAY_CONTRAST;
-    int RPM_GENERAL_HSV_CONTRAST;
-    int RPM_SKIP;
-    // EnumTextFilterMode
-    int TFM_AUTO;
-    int TFM_GENERAL_CONTOUR;
-    int TFM_SKIP;
-    // EnumConflictMode
-    int CM_IGNORE;
-    int CM_OVERWRITE;
-    // ImagePreprocessingMode
-    int IPM_AUTO;
-    int IPM_GENERAL;
-    int IPM_GRAY_EQUALIZE;
-    int IPM_GRAY_SMOOTH;
-    int IPM_SHARPEN_SMOOTH;
-    int IPM_SKIP;
-    // EnumIntermediateResultType
-    int IRT_NO_RESULT;
-    int IRT_ORIGINAL_IMAGE;
-    int IRT_COLOUR_CLUSTERED_IMAGE;
-    int IRT_COLOUR_CONVERTED_GRAYSCALE_IMAGE;
-    int IRT_TRANSFORMED_GRAYSCALE_IMAGE;
-    int IRT_PREDETECTED_REGION;
-    int IRT_PREPROCESSED_IMAGE;
-    int IRT_BINARIZED_IMAGE;
-    int IRT_TEXT_ZONE;
-    int IRT_CONTOUR;
-    int IRT_LINE_SEGMENT;
-    int IRT_FORM;
-    int IRT_SEGMENTATION_BLOCK;
-    int IRT_TYPED_BARCODE_ZONE;
-    // EnumLocalizationMode
-    int LM_AUTO;
-    int LM_CONNECTED_BLOCKS;
-    int LM_STATISTICS;
-    int LM_LINES;
-    int LM_SCAN_DIRECTLY;
-    int LM_STATISTICS_MARKS;
-    int LM_SKIP;
-    // EnumQRCodeErrorCorrectionLevel
-    int QRECL_ERROR_CORRECTION_H;
-    int QRECL_ERROR_CORRECTION_L;
-    int QRECL_ERROR_CORRECTION_M;
-    int QRECL_ERROR_CORRECTION_Q;
-    // EnumDeformationResistingMode
-    int DRM_AUTO;
-    int DRM_GENERAL;
-    int DRM_SKIP;
-    // EnumTextAssistedCorrectionMode
-    int TACM_AUTO;
-    int TACM_VERIFYING;
-    int TACM_VERIFYING_PATCHING;
-    int TACM_SKIP;
-    // EnumTextResultOrderMode
-    int TROM_CONFIDENCE;
-    int TROM_POSITION;
-    int TROM_FORMAT;
-    int TROM_SKIP;
-    // EnumTextureDetectionMode
-    int TDM_AUTO;
-    int TDM_GENERAL_WIDTH_CONCENTRATION;
-    int TDM_SKIP;
-    // EnumGrayscaleTransformationMode
-    int GTM_INVERTED;
-    int GTM_ORIGINAL;
-    int GTM_SKIP;
-    // EnumResultCoordinateType
-    int RCT_PIXEL;
-    int RCT_PERCENTAGE;
-    // EnumIMResultDataType
-    int IMRDT_IMAGE;
-    int IMRDT_CONTOUR;
-    int IMRDT_LINESEGMENT;
-    int IMRDT_LOCALIZATIONRESULT;
-    int IMRDT_REGIONOFINTEREST;
-    // EnumIntermediateResultSavingMode
-    int IRSM_MEMORY;
-    int IRSM_FILESYSTEM;
-    int IRSM_BOTH;
-    
     // Barcode reader handler
     void *hBarcode;
     // Callback function for video mode
@@ -262,7 +73,6 @@ static PyObject * CreatePyRuntimeSettings(PublicRuntimeSettings pSettings)
     PyObject * pySettings = PyDict_New();
     if(pySettings == NULL)
     {
-        printf("PublicRuntimeSettings:New Dict failure\n");   
         return NULL;     
     }
 
@@ -328,6 +138,8 @@ static PyObject * CreatePyRuntimeSettings(PublicRuntimeSettings pSettings)
     PyObject * barcodeComplementModes       = PyList_New(8);
     PyObject * barcodeColourModes           = PyList_New(8);
     PyObject * textResultOrderModes         = PyList_New(8);
+	PyObject * accompanyingTextRecognitionModes = PyList_New(8);
+	PyObject * scaleUpModes = PyList_New(8);
 
     for(int i = 0; i < 8; ++i)
     {
@@ -359,6 +171,10 @@ static PyObject * CreatePyRuntimeSettings(PublicRuntimeSettings pSettings)
         PyList_SetItem(barcodeColourModes,       i, tempBICM);
         PyObject * tempTROM                 = Py_BuildValue("i", pSettings.textResultOrderModes[i]);
         PyList_SetItem(textResultOrderModes,     i, tempTROM);
+		PyObject * tempATRM                 = Py_BuildValue("i", pSettings.furtherModes.accompanyingTextRecognitionModes[i]);
+		PyList_SetItem(accompanyingTextRecognitionModes, i, tempATRM);
+		PyObject * tempSUM = Py_BuildValue("i", pSettings.scaleUpModes[i]);
+		PyList_SetItem(scaleUpModes, i, tempSUM);
     }
 
     PyObject * binarizationModesKey         = Py_BuildValue("s", "BinarizationModes");
@@ -430,6 +246,16 @@ static PyObject * CreatePyRuntimeSettings(PublicRuntimeSettings pSettings)
     PyDict_SetItem(pySettings, textResultOrderModesKey,     textResultOrderModes);
     Py_DECREF(textResultOrderModes);
     Py_DECREF(textResultOrderModesKey);
+
+	PyObject * accompanyingTextRecognitionModesKey = Py_BuildValue("s", "AccompanyingTextRecognitionModes");
+	PyDict_SetItem(pySettings, accompanyingTextRecognitionModesKey, accompanyingTextRecognitionModes);
+	Py_DECREF(accompanyingTextRecognitionModes);
+	Py_DECREF(accompanyingTextRecognitionModesKey);
+
+	PyObject * scaleUpModesKey = Py_BuildValue("s", "ScaleUpModes");
+	PyDict_SetItem(pySettings, scaleUpModesKey, scaleUpModes);
+	Py_DECREF(scaleUpModes);
+	Py_DECREF(scaleUpModesKey);
 
     PyObject * textAssistedCorrectionMode   = Py_BuildValue("i", pSettings.furtherModes.textAssistedCorrectionMode);
     PyObject * textAssistedCorrectionModeKey =Py_BuildValue("s", "TextAssistedCorrectionMode");
@@ -538,7 +364,8 @@ PublicRuntimeSettings CreateCRuntimeSettings(PyObject *o)
     PyObject * barcodeComplementModes       = PyDict_GetItem(o, Py_BuildValue("s", "BarcodeComplementModes"));
     PyObject * barcodeColourModes           = PyDict_GetItem(o, Py_BuildValue("s", "BarcodeColourModes"));
     PyObject * textResultOrderModes         = PyDict_GetItem(o, Py_BuildValue("s", "TextResultOrderModes"));
-
+	PyObject * accompanyingTextRecognitionModes = PyDict_GetItem(o, Py_BuildValue("s", "AccompanyingTextRecognitionModes"));
+	PyObject * scaleUpModes					= PyDict_GetItem(o, Py_BuildValue("s", "ScaleUpModes"));
 
     for(int i = 0; i < 8; ++i)
     {
@@ -556,7 +383,9 @@ PublicRuntimeSettings CreateCRuntimeSettings(PyObject *o)
         pSettings.furtherModes.barcodeComplementModes[i]        = (BarcodeComplementMode)(PyLong_AsLong(PyList_GetItem(barcodeComplementModes, i)));
         pSettings.furtherModes.barcodeColourModes[i]            = (BarcodeColourMode)(PyLong_AsLong(PyList_GetItem(barcodeColourModes, i)));
         pSettings.textResultOrderModes[i]                       = (TextResultOrderMode)(PyLong_AsLong(PyList_GetItem(textResultOrderModes, i)));
-    }
+		pSettings.furtherModes.accompanyingTextRecognitionModes[i] = (AccompanyingTextRecognitionMode)(PyLong_AsLong(PyList_GetItem(accompanyingTextRecognitionModes, i)));
+		pSettings.scaleUpModes[i]								= (ScaleUpMode)(PyLong_AsLong(PyList_GetItem(scaleUpModes, i)));
+	}
 
     pSettings.furtherModes.textAssistedCorrectionMode               = (TextAssistedCorrectionMode)(PyLong_AsLong(PyDict_GetItem(o, Py_BuildValue("s", "TextAssistedCorrectionMode"))));
     pSettings.deblurLevel                                           = PyLong_AsLong(PyDict_GetItem(o, Py_BuildValue("s", "DeblurLevel")));
@@ -580,8 +409,7 @@ static PyObject * CreatePySamplingImageData(SamplingImageData samplingImage)
     //create SamplingImage
     PyObject * pySamplingImage = PyDict_New();
     if(pySamplingImage == NULL)
-    {
-        printf("SamplingImageData:New Dict failure\n");   
+    { 
         return NULL;     
     }
 
@@ -595,13 +423,12 @@ static PyObject * CreatePySamplingImageData(SamplingImageData samplingImage)
     }
     else
     {
-        PyObject * pySamplingImageBytes     = Py_BuildValue("s", "NULL");
+        //PyObject * pySamplingImageBytes     = Py_BuildValue("s", "NULL");
         PyObject * pySamplingImageBytesKey  = Py_BuildValue("s", "Bytes");
-        PyDict_SetItem(pySamplingImage, pySamplingImageBytesKey, pySamplingImageBytes);
-        Py_DECREF(pySamplingImageBytes);
+        PyDict_SetItem(pySamplingImage, pySamplingImageBytesKey, Py_None);
+        //Py_DECREF(pySamplingImageBytes);
         Py_DECREF(pySamplingImageBytesKey);
     }
-
 
     PyObject * pySamplingImageWidth     = Py_BuildValue("i", samplingImage.width);
     PyObject * pySamplingImageWidthKey  = Py_BuildValue("s", "Width");
@@ -620,16 +447,9 @@ static PyObject * CreatePySamplingImageData(SamplingImageData samplingImage)
 
 static PyObject * CreatePyDetailedResult(void * pResult, int format)
 {
-    if (!pResult)
-    {
-        printf("No detailed result detected\n");
-        return NULL;
-    }
-
     PyObject * pyResult = PyDict_New();
     if(pyResult == NULL)
     {
-        printf("DetailedResult:New Dict failure\n");   
         return NULL;     
     }
 
@@ -652,10 +472,10 @@ static PyObject * CreatePyDetailedResult(void * pResult, int format)
         }
         else
         {
-            PyObject * pyStartCharsBytes    = Py_BuildValue("s", "NULL");
+            //PyObject * pyStartCharsBytes    = Py_BuildValue("o", NULL);
             PyObject * pyStartCharsBytesKey = Py_BuildValue("s", "StartCharsBytes");
-            PyDict_SetItem(pyResult, pyStartCharsBytesKey, pyStartCharsBytes);
-            Py_DECREF(pyStartCharsBytes);
+            PyDict_SetItem(pyResult, pyStartCharsBytesKey, Py_None);
+            //Py_DECREF(pyStartCharsBytes);
             Py_DECREF(pyStartCharsBytesKey);
         }
 
@@ -669,10 +489,10 @@ static PyObject * CreatePyDetailedResult(void * pResult, int format)
         }
         else
         {
-            PyObject * pyStopCharsBytes     = Py_BuildValue("s", "NULL");
+            //PyObject * pyStopCharsBytes     = Py_BuildValue("o", NULL);
             PyObject * pyStopCharsBytesKey  = Py_BuildValue("s", "StopCharsBytes");
-            PyDict_SetItem(pyResult, pyStopCharsBytesKey, pyStopCharsBytes);
-            Py_DECREF(pyStopCharsBytes);
+            PyDict_SetItem(pyResult, pyStopCharsBytesKey, Py_None);
+            //Py_DECREF(pyStopCharsBytes);
             Py_DECREF(pyStopCharsBytesKey);
         }
         
@@ -687,10 +507,10 @@ static PyObject * CreatePyDetailedResult(void * pResult, int format)
         }
         else
         {
-            PyObject * pyCheckDigitBytes    = Py_BuildValue("s", "NULL");
+            //PyObject * pyCheckDigitBytes    = Py_BuildValue("o", NULL);
             PyObject * pyCheckDigitBytesKey = Py_BuildValue("s", "CheckDigitBytes");
-            PyDict_SetItem(pyResult, pyCheckDigitBytesKey, pyCheckDigitBytes);
-            Py_DECREF(pyCheckDigitBytes);
+            PyDict_SetItem(pyResult, pyCheckDigitBytesKey, Py_None);
+            //Py_DECREF(pyCheckDigitBytes);
             Py_DECREF(pyCheckDigitBytesKey);
         }
     }
@@ -721,13 +541,13 @@ static PyObject * CreatePyDetailedResult(void * pResult, int format)
         Py_DECREF(pyErrorCorrectionLevelKey);
         
         PyObject * pyVersion            = Py_BuildValue("i", ((QRCodeDetails *)pResult)->version);
-        PyObject * pyVersionKey         = Py_BuildValue("s", "version");
+        PyObject * pyVersionKey         = Py_BuildValue("s", "Version");
         PyDict_SetItem(pyResult, pyVersionKey, pyVersion);
         Py_DECREF(pyVersion);
         Py_DECREF(pyVersionKey);
 
         PyObject * pyModel              = Py_BuildValue("i", ((QRCodeDetails *)pResult)->model);
-        PyObject * pyModelKey           = Py_BuildValue("s", "model");
+        PyObject * pyModelKey           = Py_BuildValue("s", "Model");
         PyDict_SetItem(pyResult, pyModelKey, pyModel);
         Py_DECREF(pyModel);
         Py_DECREF(pyModelKey);
@@ -827,16 +647,9 @@ static PyObject * CreatePyDetailedResult(void * pResult, int format)
 
 static PyObject * CreatePyLocalizationResult(LocalizationResult * pResult)
 {
-    if (!pResult)
-    {
-        printf("No localization result detected\n");
-        return NULL;
-    }
-
     PyObject * pyResult = PyDict_New();
     if(pyResult == NULL)
-    {
-        printf("LocalizationResult:New Dict failure\n");   
+    {  
         return NULL;     
     }
 
@@ -862,10 +675,10 @@ static PyObject * CreatePyLocalizationResult(LocalizationResult * pResult)
     }
     else
     {
-        PyObject *pyBarcodeFormatString     = Py_BuildValue("s", "NULL");
+        //PyObject *pyBarcodeFormatString     = Py_BuildValue("s", "NULL");
         PyObject * pyBarcodeFormatStringKey = Py_BuildValue("s", "BarcodeFormatString");
-        PyDict_SetItem(pyResult, pyBarcodeFormatStringKey, pyBarcodeFormatString);
-        Py_DECREF(pyBarcodeFormatString);
+        PyDict_SetItem(pyResult, pyBarcodeFormatStringKey, Py_None);
+        //Py_DECREF(pyBarcodeFormatString);
         Py_DECREF(pyBarcodeFormatStringKey);
     }
     
@@ -886,10 +699,10 @@ static PyObject * CreatePyLocalizationResult(LocalizationResult * pResult)
     }
     else
     {
-        PyObject * pyBarcodeFormatString_2    = Py_BuildValue("s", "NULL");
+        //PyObject * pyBarcodeFormatString_2    = Py_BuildValue("s", "NULL");
         PyObject * pyBarcodeFormatStringKey_2 = Py_BuildValue("s", "BarcodeFormatString_2");
-        PyDict_SetItem(pyResult, pyBarcodeFormatStringKey_2, pyBarcodeFormatString_2);
-        Py_DECREF(pyBarcodeFormatString_2);
+        PyDict_SetItem(pyResult, pyBarcodeFormatStringKey_2, Py_None);
+        //Py_DECREF(pyBarcodeFormatString_2);
         Py_DECREF(pyBarcodeFormatStringKey_2);
     }
     
@@ -1012,10 +825,10 @@ static PyObject * CreatePyLocalizationResult(LocalizationResult * pResult)
     }
     else
     {
-        PyObject * pyAccompanyingTextBytes    = Py_BuildValue("s", "NULL");
+        //PyObject * pyAccompanyingTextBytes    = Py_BuildValue("o", NULL);
         PyObject * pyAccompanyingTextBytesKey = Py_BuildValue("s", "AccompanyingTextBytes");
-        PyDict_SetItem(pyResult, pyAccompanyingTextBytesKey, pyAccompanyingTextBytes);
-        Py_DECREF(pyAccompanyingTextBytes);
+        PyDict_SetItem(pyResult, pyAccompanyingTextBytesKey, Py_None);
+        //Py_DECREF(pyAccompanyingTextBytes);
         Py_DECREF(pyAccompanyingTextBytesKey);
     }
     
@@ -1031,16 +844,9 @@ static PyObject * CreatePyLocalizationResult(LocalizationResult * pResult)
 
 static PyObject * CreatePyExtendedResult(ExtendedResult * pResult)
 {
-    if (!pResult)
-    {
-        printf("No extended result detected\n");
-        return NULL;
-    }
-
     PyObject * pyResult = PyDict_New();
     if(pyResult == NULL)
-    {
-        printf("ExtendedResult:New Dict failure\n");   
+    { 
         return NULL;     
     }
 
@@ -1113,10 +919,10 @@ static PyObject * CreatePyExtendedResult(ExtendedResult * pResult)
     }
     else
     {
-        PyObject * pyBytes                  = Py_BuildValue("s", "NULL");
+        //PyObject * pyBytes                  = Py_BuildValue("o", NULL);
         PyObject * pyBytesKey               = Py_BuildValue("s", "Bytes");
-        PyDict_SetItem(pyResult, pyBytesKey, pyBytes);
-        Py_DECREF(pyBytes);
+        PyDict_SetItem(pyResult, pyBytesKey, Py_None);
+        //Py_DECREF(pyBytes);
         Py_DECREF(pyBytesKey);
     }
 
@@ -1125,15 +931,15 @@ static PyObject * CreatePyExtendedResult(ExtendedResult * pResult)
         PyObject * pyAccompanyingTextBytes    = PyByteArray_FromStringAndSize(pResult->accompanyingTextBytes, pResult->accompanyingTextBytesLength);
         PyObject * pyAccompanyingTextBytesKey = Py_BuildValue("s", "AccompanyingTextBytes");
         PyDict_SetItem(pyResult, pyAccompanyingTextBytesKey, pyAccompanyingTextBytes);
-    Py_DECREF(pyAccompanyingTextBytes);
-    Py_DECREF(pyAccompanyingTextBytesKey);
+		Py_DECREF(pyAccompanyingTextBytes);
+		Py_DECREF(pyAccompanyingTextBytesKey);
     }
     else
     {
-        PyObject * pyAccompanyingTextBytes    = Py_BuildValue("s", "NULL");
+        //PyObject * pyAccompanyingTextBytes    = Py_BuildValue("o", NULL);
         PyObject * pyAccompanyingTextBytesKey = Py_BuildValue("s", "AccompanyingTextBytes");
-        PyDict_SetItem(pyResult, pyAccompanyingTextBytesKey, pyAccompanyingTextBytes);
-        Py_DECREF(pyAccompanyingTextBytes);
+        PyDict_SetItem(pyResult, pyAccompanyingTextBytesKey, Py_None);
+        //Py_DECREF(pyAccompanyingTextBytes);
         Py_DECREF(pyAccompanyingTextBytesKey);
     }
     
@@ -1153,19 +959,29 @@ static PyObject * CreatePyExtendedResult(ExtendedResult * pResult)
     }
     else
     {
-        PyObject * pyDetailedResult         = Py_BuildValue("s", "NULL");
+        //PyObject * pyDetailedResult         = Py_BuildValue("o", NULL);
         PyObject * pyDetailedResultKey      = Py_BuildValue("s", "DetailedResult");
-        PyDict_SetItem(pyResult, pyDetailedResultKey, pyDetailedResult);
-        Py_DECREF(pyDetailedResult);
+        PyDict_SetItem(pyResult, pyDetailedResultKey, Py_None);
+        //Py_DECREF(pyDetailedResult);
         Py_DECREF(pyDetailedResultKey);
     }
     
     
     PyObject * pySamplingImage          = CreatePySamplingImageData(pResult->samplingImage);
-    PyObject * pySamplingImageKey       = Py_BuildValue("s", "SamplingImage");
-    PyDict_SetItem(pyResult, pySamplingImageKey, pySamplingImage);
-    Py_DECREF(pySamplingImage);
-    Py_DECREF(pySamplingImageKey);
+	if (pySamplingImage != NULL)
+	{
+		PyObject * pySamplingImageKey = Py_BuildValue("s", "SamplingImage");
+		PyDict_SetItem(pyResult, pySamplingImageKey, pySamplingImage);
+		Py_DECREF(pySamplingImage);
+		Py_DECREF(pySamplingImageKey);
+	}
+	else
+	{
+		PyObject * pySamplingImageKey = Py_BuildValue("s", "SamplingImage");
+		PyDict_SetItem(pyResult, pySamplingImageKey, Py_None);
+		Py_DECREF(pySamplingImage);
+		Py_DECREF(pySamplingImageKey);
+	}
 
     PyObject * pyClarity                = Py_BuildValue("i",pResult->clarity);
     PyObject * pyClarityKey             = Py_BuildValue("s", "Clarity");
@@ -1176,25 +992,23 @@ static PyObject * CreatePyExtendedResult(ExtendedResult * pResult)
     return pyResult;
 }
 
-static PyObject * CreatePyTextResults(TextResultArray *pResults, const char * encoding)
+static PyObject * CreatePyTextResults(TextResultArray *pResults)
 {
-    if (pResults->results == NULL || pResults->resultsCount == 0)
-    {
-        PyErr_SetString(PyExc_TypeError, "No barcode detected!");
-        return NULL;
-    }
     // Get barcode results
     int count = pResults->resultsCount;
 
     // Create a Python object to store results
     PyObject *pyTextResults = PyList_New(count);
+	if (pyTextResults == NULL)
+	{
+		return NULL;
+	}
 
     for (int i = 0; i < count; i++)
     {
         PyObject * pyTextResult = PyDict_New();
         if(pyTextResult == NULL)
         {
-            PyErr_SetString(PyExc_TypeError, "New Dict failure!"); 
             return NULL;     
         }
 
@@ -1276,10 +1090,10 @@ static PyObject * CreatePyTextResults(TextResultArray *pResults, const char * en
         }
         else
         {
-            PyObject * pyBarcodeBytes       = Py_BuildValue("s", "NULL");
+            //PyObject * pyBarcodeBytes       = Py_BuildValue("o", NULL);
             PyObject * pyBarcodeBytesKey    = Py_BuildValue("s", "BarcodeBytes");
-            PyDict_SetItem(pyTextResult, pyBarcodeBytesKey, pyBarcodeBytes);
-            Py_DECREF(pyBarcodeBytes);
+            PyDict_SetItem(pyTextResult, pyBarcodeBytesKey, Py_None);
+            //Py_DECREF(pyBarcodeBytes);
             Py_DECREF(pyBarcodeBytesKey);
         }
         
@@ -1293,10 +1107,10 @@ static PyObject * CreatePyTextResults(TextResultArray *pResults, const char * en
         }
         else
         {
-            PyObject * pyLocalizationResult     = Py_BuildValue("s", "NULL");
+            //PyObject * pyLocalizationResult     = Py_BuildValue("o", NULL);
             PyObject * pyLocalizationResultKey  = Py_BuildValue("s", "LocalizationResult");
-            PyDict_SetItem(pyTextResult, pyLocalizationResultKey, pyLocalizationResult);
-            Py_DECREF(pyLocalizationResult);
+            PyDict_SetItem(pyTextResult, pyLocalizationResultKey, Py_None);
+            //Py_DECREF(pyLocalizationResult);
             Py_DECREF(pyLocalizationResultKey);
         }
 
@@ -1310,14 +1124,14 @@ static PyObject * CreatePyTextResults(TextResultArray *pResults, const char * en
         }
         else
         {
-            PyObject * pyDetailedResult     = Py_BuildValue("s", "NULL");
+            //PyObject * pyDetailedResult     = Py_BuildValue("o", NULL);
             PyObject * pyDetailedResultKey  = Py_BuildValue("s", "DetailedResult");
-            PyDict_SetItem(pyTextResult, pyDetailedResultKey, pyDetailedResult);
-            Py_DECREF(pyDetailedResult);
+            PyDict_SetItem(pyTextResult, pyDetailedResultKey, Py_None);
+            //Py_DECREF(pyDetailedResult);
             Py_DECREF(pyDetailedResultKey);
         }
 
-        if(pResults->results[i]->resultsCount != 0)
+        if(pResults->results[i]->resultsCount != 0 && pResults->results[i]->results != NULL)
         {
             PyObject * pyExtendedResults    = PyList_New(pResults->results[i]->resultsCount);
             for(int j = 0; j < pResults->results[i]->resultsCount; ++j)
@@ -1332,10 +1146,10 @@ static PyObject * CreatePyTextResults(TextResultArray *pResults, const char * en
         }
         else
         {
-            PyObject * pyExtendedResults = Py_BuildValue("s", "NULL");
+            //PyObject * pyExtendedResults = Py_BuildValue("o", NULL);
             PyObject * pyExtendedResultsKey = Py_BuildValue("s", "ExtendedResults");
-            PyDict_SetItem(pyTextResult, pyExtendedResultsKey, pyExtendedResults);
-            Py_DECREF(pyExtendedResults);
+            PyDict_SetItem(pyTextResult, pyExtendedResultsKey, Py_None);
+            //Py_DECREF(pyExtendedResults);
             Py_DECREF(pyExtendedResultsKey);
         }
 
@@ -1351,6 +1165,10 @@ static PyObject * CreatePyTextResults(TextResultArray *pResults, const char * en
 static PyObject * CreateIntermediateResultDatas(const void** ppResults, int count, IMResultDataType dataType)
 {
     PyObject * pyResults = PyList_New(count);
+	if (pyResults == NULL)
+	{
+		return NULL;
+	}
 
     for(int i = 0; i < count; ++i)
     {
@@ -1368,10 +1186,10 @@ static PyObject * CreateIntermediateResultDatas(const void** ppResults, int coun
             }
             else
             {
-                PyObject * pyBytes       = Py_BuildValue("s", "NULL");
+                //PyObject * pyBytes       = Py_BuildValue("o", NULL);
                 PyObject * pyBytesKey    = Py_BuildValue("s", "Bytes");
-                PyDict_SetItem(pyImageData, pyBytesKey, pyBytes);
-                Py_DECREF(pyBytes);
+                PyDict_SetItem(pyImageData, pyBytesKey, Py_None);
+                //Py_DECREF(pyBytes);
                 Py_DECREF(pyBytesKey);
             }
             
@@ -1393,6 +1211,12 @@ static PyObject * CreateIntermediateResultDatas(const void** ppResults, int coun
             PyDict_SetItem(pyImageData, pyStrideKey, pyStride);
             Py_DECREF(pyStride);
             Py_DECREF(pyStrideKey);
+
+            PyObject * pyImagePixelFormat      = Py_BuildValue("i", ((ImageData *)(ppResults[i]))->format);
+            PyObject * pyImagePixelFormatKey   = Py_BuildValue("s", "ImagePixelFormat");
+            PyDict_SetItem(pyImageData, pyImagePixelFormatKey, pyImagePixelFormat);
+            Py_DECREF(pyImagePixelFormat);
+            Py_DECREF(pyImagePixelFormatKey);
 
             PyList_SetItem(pyResults, i, pyImageData);
         }
@@ -1429,10 +1253,10 @@ static PyObject * CreateIntermediateResultDatas(const void** ppResults, int coun
             }
             else
             {
-                PyObject * pyPoints   = Py_BuildValue("s", "NULL");
+                //PyObject * pyPoints   = Py_BuildValue("o", NULL);
                 PyObject * pyPointsKey   = Py_BuildValue("s", "Points");
-                PyDict_SetItem(pyContour, pyPointsKey, pyPoints);
-                Py_DECREF(pyPoints);
+                PyDict_SetItem(pyContour, pyPointsKey, Py_None);
+                //Py_DECREF(pyPoints);
                 Py_DECREF(pyPointsKey);
                 PyList_SetItem(pyResults, i, pyContour);
             }
@@ -1491,10 +1315,10 @@ static PyObject * CreateIntermediateResultDatas(const void** ppResults, int coun
             }
             else
             {
-                PyObject * pyLinesConfidenceCoefficients   = Py_BuildValue("s", "NULL");
+                //PyObject * pyLinesConfidenceCoefficients   = Py_BuildValue("o", NULL);
                 PyObject * pyLinesConfidenceCoefficientsKey   = Py_BuildValue("s", "LinesConfidenceCoefficients");
-                PyDict_SetItem(pyLineSegment, pyLinesConfidenceCoefficientsKey, pyLinesConfidenceCoefficients);
-                Py_DECREF(pyLinesConfidenceCoefficients);
+                PyDict_SetItem(pyLineSegment, pyLinesConfidenceCoefficientsKey, Py_None);
+                //Py_DECREF(pyLinesConfidenceCoefficients);
                 Py_DECREF(pyLinesConfidenceCoefficientsKey);
             }
             
@@ -1515,10 +1339,10 @@ static PyObject * CreateIntermediateResultDatas(const void** ppResults, int coun
             }
             else
             {
-                PyObject * pyLocalizationResult   = Py_BuildValue("s", "NULL");
+                //PyObject * pyLocalizationResult   = Py_BuildValue("o", NULL);
                 PyObject * pyLRKey   = Py_BuildValue("s", "LocalizationRsult");
-                PyDict_SetItem(pyLR, pyLRKey, pyLocalizationResult);
-                Py_DECREF(pyLocalizationResult);
+                PyDict_SetItem(pyLR, pyLRKey, Py_None);
+                //Py_DECREF(pyLocalizationResult);
                 Py_DECREF(pyLRKey);
                 PyList_SetItem(pyResults, i, pyLR);
             }
@@ -1573,11 +1397,6 @@ static PyObject * CreateIntermediateResultDatas(const void** ppResults, int coun
 
 static PyObject * CreatePyIntermediateResults(IntermediateResultArray * pResults)
 {
-    if (pResults->results == NULL || pResults->resultsCount == 0)
-    {
-        printf("No Intermediate result detected\n");
-        return Py_BuildValue("s", "NULL");
-    }
     // Get barcode results
     int count = pResults->resultsCount;
 
@@ -1589,7 +1408,6 @@ static PyObject * CreatePyIntermediateResults(IntermediateResultArray * pResults
         PyObject * pyIntermediateResult = PyDict_New();
         if(pyIntermediateResult == NULL)
         {
-            printf("IntermediateResult:New Dict failure\n");   
             return NULL;     
         }
 
@@ -1609,10 +1427,10 @@ static PyObject * CreatePyIntermediateResults(IntermediateResultArray * pResults
         }
         else
         {
-            PyObject * pyResults   = Py_BuildValue("s", "NULL");
+            //PyObject * pyResults   = Py_BuildValue("o", NULL);
             PyObject * pyResultsKey   = Py_BuildValue("s", "IMResults");
-            PyDict_SetItem(pyIntermediateResult, pyResultsKey, pyResults);
-            Py_DECREF(pyResults);
+            PyDict_SetItem(pyIntermediateResult, pyResultsKey, Py_None);
+            //Py_DECREF(pyResults);
             Py_DECREF(pyResultsKey);
         }
         
@@ -1784,8 +1602,7 @@ static PyObject * CreatePyFrameDecodingParameters(FrameDecodingParameters * pPar
 {
     PyObject * pyParameters = PyDict_New();
     if(pyParameters == NULL)
-    {
-        printf("FrameDecodingParameters:New Dict failure\n");   
+    { 
         return NULL;     
     }
 
@@ -1867,6 +1684,12 @@ static PyObject * CreatePyFrameDecodingParameters(FrameDecodingParameters * pPar
     Py_DECREF(pyFPS);
     Py_DECREF(pyFPSKey);
 
+	PyObject * pyAutoFilter = Py_BuildValue("i", pParameters->autoFilter);
+	PyObject * pyAutoFilterKey = Py_BuildValue("s", "AutoFilter");
+	PyDict_SetItem(pyParameters, pyAutoFilterKey, pyAutoFilter);
+	Py_DECREF(pyAutoFilter);
+	Py_DECREF(pyAutoFilterKey);
+
     return pyParameters;
 }
 
@@ -1886,6 +1709,7 @@ FrameDecodingParameters CreateCFrameDecodingParameters(PyObject * pyParameters)
     parameters.region.regionMeasuredByPercentage    = PyLong_AsLong(PyDict_GetItem(pyParameters, Py_BuildValue("s", "RegionMeasuredByPercentage")));
     parameters.threshold                            = (float)PyFloat_AsDouble(PyDict_GetItem(pyParameters, Py_BuildValue("s", "Threshold")));
     parameters.fps                                  = PyLong_AsLong(PyDict_GetItem(pyParameters, Py_BuildValue("s", "FPS")));
+	parameters.autoFilter							= PyLong_AsLong(PyDict_GetItem(pyParameters, Py_BuildValue("s", "AutoFilter")));
 
     return parameters;
 }
@@ -2586,13 +2410,26 @@ appendVideoFrame(PyObject *obj, PyObject *args)
 
 #pragma endregion
 
-/**
- * Set Dynamsoft Barcode Reader license.  
- * To get valid license, please contact support@dynamsoft.com
- * Invalid license is acceptable. With an invalid license, SDK will return an imcomplete result.
- *
- * @return Returns error code. Returns 0 if the function operates successfully.
- */
+static PyObject * GetDBRVersion(PyObject *obj, PyObject *args)
+{
+	DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
+	const char * version = DBR_GetVersion();
+	return Py_BuildValue("s", version);
+}
+
+static PyObject * GetErrorString(PyObject *obj, PyObject *args)
+{
+	DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
+	int errorCode = 0;
+	if (!PyArg_ParseTuple(args, "i", &errorCode))
+	{
+		Py_RETURN_NONE;
+	}
+
+	const char* errorString = DBR_GetErrorString(errorCode);
+	return Py_BuildValue("s", errorString);
+}
+
 static PyObject * InitLicense(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -2600,20 +2437,14 @@ static PyObject * InitLicense(PyObject *obj, PyObject *args)
     char *pszLicense;
     if (!PyArg_ParseTuple(args, "s", &pszLicense))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     int ret = DBR_InitLicense(self->hBarcode, pszLicense);
     const char* errorString = DBR_GetErrorString(ret);
-    printf("%s\n", errorString);
-    return Py_BuildValue("i", ret);
+    return Py_BuildValue("(i,s)", ret, errorString);
 }
 
-/**
- * Gets current settings and save them into a dictionary.
- *
- * @return Return current runtime settings.
- */
 static PyObject * GetRuntimeSettings(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -2622,67 +2453,34 @@ static PyObject * GetRuntimeSettings(PyObject *obj, PyObject *args)
     int errorCode = DBR_GetRuntimeSettings(self->hBarcode, &settings);
 
     PyObject * pySettings = CreatePyRuntimeSettings(settings);
-
+	
     return pySettings;
 }
 
-/**
- * Updates runtime settings with a given dictionary.
- *
- * @param [in] settings Dictionary The dictionary of template settings.
- * 
- * @return Returns error code. Returns 0 if the function operates successfully.
- */
 static PyObject * UpdataRuntimeSettings(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
     PyObject *pyParameters;
     if (!PyArg_ParseTuple(args, "O", &pyParameters))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
-    if(!PyDict_Check(pyParameters))
-    {
-        printf("the parameter should be a dictionary.");
-        return NULL;
-    }
+    
     PublicRuntimeSettings settings = CreateCRuntimeSettings(pyParameters);
     char szErrorMsgBuffer[256];
     int errorCode = DBR_UpdateRuntimeSettings(self->hBarcode, &settings, szErrorMsgBuffer, 256);
-    if(errorCode != 0)
-    {
-        printf("Error:%s\n", szErrorMsgBuffer);
-    }
-    else
-    {
-        printf("Successful!\n");
-    }
-    return Py_BuildValue("i", errorCode);
+	return Py_BuildValue("(i,s)", errorCode, szErrorMsgBuffer);
 }
 
-/**
- * Resets all parameters to default values.
- *
- */
 static PyObject * ResetRuntimeSettings(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
 
     DBR_ResetRuntimeSettings(self->hBarcode);
 
-    return NULL;
+	Py_RETURN_NONE;
 }
 
-/**
- * Sets the optional argument for a specified mode in Modes parameters.
- *
- * @param [in] modesName String The mode parameter name to set argument.
- * @param [in] index LONG The array index of mode parameter to indicate a specific mode.
- * @param [in] argumentName String The name of the argument to set.
- * @param [in] argumentValue String The value of the argument to set.
- * 
- * @return Returns error code. Returns 0 if the function operates successfully.
- */
 static PyObject * SetModeArgument(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -2692,30 +2490,13 @@ static PyObject * SetModeArgument(PyObject *obj, PyObject *args)
     char * pArgumentValue;
     if (!PyArg_ParseTuple(args, "siss", &pModesName, &index, &pArgumentName, &pArgumentValue))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
     char szErrorMsgBuffer[256];
     int errorCode = DBR_SetModeArgument(self->hBarcode, pModesName, index, pArgumentName, pArgumentValue, szErrorMsgBuffer, 256);
-    if(errorCode != 0)
-    {
-        printf("Error:%s\n", szErrorMsgBuffer);
-    }
-    else
-    {
-        printf("Successful!\n");
-    }
-    return Py_BuildValue("i", errorCode);
+    return Py_BuildValue("(i,s)", errorCode, szErrorMsgBuffer);
 }
 
-/**
- * Gets the optional argument for a specified mode in Modes parameters.
- *
- * @param [in] modesName String The mode parameter name to set argument.
- * @param [in] index LONG The array index of mode parameter to indicate a specific mode.
- * @param [in] argumentName String The name of the argument to set.
- * 
- * @return Returns error code. Returns 0 if the function operates successfully.
- */
 static PyObject * GetModeArgument(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -2724,41 +2505,80 @@ static PyObject * GetModeArgument(PyObject *obj, PyObject *args)
     char * pArgumentName;
     if (!PyArg_ParseTuple(args, "sis", &pModesName, &index, &pArgumentName))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
     char szErrorMsgBuffer[256];
     char pArgumentValue[512];
     int errorCode = DBR_GetModeArgument(self->hBarcode, pModesName, index, pArgumentName, pArgumentValue, 512, szErrorMsgBuffer, 256);
     if(errorCode != 0)
     {
-        printf("Error:%s\n", szErrorMsgBuffer);
-        return NULL;
+		return Py_BuildValue("(i,s)", errorCode, szErrorMsgBuffer);
     }
     else
     {
-        printf("Successful!\n");
+		return Py_BuildValue("s", pArgumentValue);
     }
-    return Py_BuildValue("s", pArgumentValue);
 }
 
-/**
- * Decode barcode from a file 
- * 
- * @param [in] filename String The file name.
- * @param [in] templateName String The template name.
- * 
- * @return Returns a dictionary which includes text results and intermediate results.
- */
+static PyObject * GetAllTextResults(PyObject *obj, PyObject *args)
+{
+	DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
+
+	TextResultArray *pResults = NULL;
+	DBR_GetAllTextResults(self->hBarcode, &pResults);
+
+	if (pResults == NULL || pResults->resultsCount == 0)
+	{
+		Py_RETURN_NONE;
+	}
+	else
+	{
+		PyObject * pyTextResults = CreatePyTextResults(pResults);
+		DBR_FreeTextResults(&pResults);
+		if(pyTextResults == NULL)
+		{
+			Py_RETURN_NONE;
+		}
+		else
+		{
+			return pyTextResults;
+		}
+	}
+}
+
+static PyObject * GetAllIntermediateResults(PyObject *obj, PyObject *args)
+{
+	DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
+
+	IntermediateResultArray * pIResults = NULL;
+	DBR_GetIntermediateResults(self->hBarcode, &pIResults);
+
+	if (pIResults == NULL || pIResults->resultsCount == 0)
+		Py_RETURN_NONE;
+	else
+	{
+		PyObject * pyIntermediateResults = CreatePyIntermediateResults(pIResults);
+		DBR_FreeIntermediateResults(&pIResults);
+		if (pyIntermediateResults == NULL)
+		{
+			Py_RETURN_NONE;
+		}
+		else
+		{
+			return pyIntermediateResults;
+		}
+	}
+}
+
 static PyObject * DecodeFile(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
 
     char *pFileName; // File name
     char *templateName = NULL;
-    char *encoding = NULL;
-    if (!PyArg_ParseTuple(args, "s|ss", &pFileName, &templateName, &encoding))
+    if (!PyArg_ParseTuple(args, "ss", &pFileName, &templateName))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     if(templateName == NULL)
@@ -2766,56 +2586,12 @@ static PyObject * DecodeFile(PyObject *obj, PyObject *args)
         templateName = "";
     }
 
-    if(encoding == NULL)
-    {
-        encoding = "utf8";
-    }
-
     // Barcode detection
 
     int ret = DBR_DecodeFile(self->hBarcode, pFileName, templateName);
-
-    TextResultArray *pResults = NULL;
-    DBR_GetAllTextResults(self->hBarcode, &pResults);
-
-    IntermediateResultArray * pIResults = NULL;
-    DBR_GetIntermediateResults(self->hBarcode, &pIResults);
-
-    // Wrap results
-    PyObject * results = PyDict_New();
-
-    PyObject * pyTextResults = CreatePyTextResults(pResults, encoding);
-    if(pyTextResults == NULL)
-    {
-        return NULL;
-    }
-    PyObject * pyTextResultsKey = Py_BuildValue("s","TextResults");
-    PyDict_SetItem(results, pyTextResultsKey, pyTextResults);
-
-    Py_DECREF(pyTextResults);
-    Py_DECREF(pyTextResultsKey);
-
-    DBR_FreeTextResults(&pResults);
-
-    PyObject * pyIntermediateResults = CreatePyIntermediateResults(pIResults);
-    PyObject * pyIntermediateResultsKey = Py_BuildValue("s","IntermediateResults");
-    PyDict_SetItem(results, pyIntermediateResultsKey, pyIntermediateResults);
-
-    Py_DECREF(pyIntermediateResults);
-    Py_DECREF(pyIntermediateResultsKey);
-
-    DBR_FreeIntermediateResults(&pIResults);
-
-
-    return results;
+	return Py_BuildValue("i", ret);
 }
 
-/**
- * Decode barcode from an image buffer. 
- * @param [in] frame-by-opencv-capture.
- * 
- * @return Returns a dictionary which includes text results and intermediate results.
- */
 static PyObject * DecodeBuffer(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -2824,14 +2600,8 @@ static PyObject * DecodeBuffer(PyObject *obj, PyObject *args)
     char *templateName = NULL;
     int width, height, stride;
     int imagePixelFormat = IPF_RGB_888;
-    char *encoding = NULL;
-    if (!PyArg_ParseTuple(args, "Oiii|iss", &o, &height, &width, &stride, &imagePixelFormat, &templateName, &encoding))
-        return NULL;
-
-    if(encoding == NULL)
-    {
-        encoding = "utf8";
-    }
+    if (!PyArg_ParseTuple(args, "Oiiiis", &o, &height, &width, &stride, &imagePixelFormat, &templateName))
+		Py_RETURN_NONE;
 
 #if defined(IS_PY3K)
     //Refer to numpy/core/src/multiarray/ctors.c
@@ -2841,17 +2611,12 @@ static PyObject * DecodeBuffer(PyObject *obj, PyObject *args)
     if (memoryview == NULL)
     {
         PyErr_Clear();
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     view = PyMemoryView_GET_BUFFER(memoryview);
     char *buffer = (char *)(view->buf);
 
-    // nd = (int)(view->ndim);
-    // int len = (int)(view->len);
-    // int stride = (int)(view->strides[0]);
-    // int width = (int)(view->strides[0] / view->strides[1]);
-    // int height = len / stride;
 #else
 
     PyObject *ao = PyObject_GetAttrString(o, "__array_struct__");
@@ -2859,7 +2624,7 @@ static PyObject * DecodeBuffer(PyObject *obj, PyObject *args)
     if ((ao == NULL) || !PyCObject_Check(ao))
     {
         PyErr_SetString(PyExc_TypeError, "object does not have array interface");
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     PyArrayInterface *pai = (PyArrayInterface *)PyCObject_AsVoidPtr(ao);
@@ -2868,76 +2633,29 @@ static PyObject * DecodeBuffer(PyObject *obj, PyObject *args)
     {
         PyErr_SetString(PyExc_TypeError, "object does not have array interface");
         Py_DECREF(ao);
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     // Get image information
     char *buffer = (char *)pai->data;  // The address of image data
 
-    // int width = (int)pai->shape[1];    // image width
-    // int height = (int)pai->shape[0];   // image height
-    // int channels = (int)pai->shape[2];
-    // int stride = (int)pai->strides[0]; // image stride
 #endif
 
     // Initialize Dynamsoft Barcode Reader
-    TextResultArray *pResults = NULL;
 
     if(templateName == NULL)
     {
         templateName = "";
     }
     int ret = DBR_DecodeBuffer(self->hBarcode, buffer, width, height, stride, imagePixelFormat, templateName);
-    if (ret)
-    {
-        printf("Detection error: %s\n", DBR_GetErrorString(ret));
-    }
-    // Wrap results
-    DBR_GetAllTextResults(self->hBarcode, &pResults);
-    IntermediateResultArray * pIResults = NULL;
-    DBR_GetIntermediateResults(self->hBarcode, &pIResults);
-
-    // Wrap results
-    PyObject * results = PyDict_New();
-
-    PyObject * pyTextResults = CreatePyTextResults(pResults, encoding);
-    if(pyTextResults == NULL)
-    {
-        return NULL;
-    }
-    PyObject * pyTextResultsKey = Py_BuildValue("s","TextResults");
-    PyDict_SetItem(results, pyTextResultsKey, pyTextResults);
-
-    Py_DECREF(pyTextResults);
-    Py_DECREF(pyTextResultsKey);
-
-    DBR_FreeTextResults(&pResults);
-
-    PyObject * pyIntermediateResults = CreatePyIntermediateResults(pIResults);
-    PyObject * pyIntermediateResultsKey = Py_BuildValue("s","IntermediateResults");
-    PyDict_SetItem(results, pyIntermediateResultsKey, pyIntermediateResults);
-
-    Py_DECREF(pyIntermediateResults);
-    Py_DECREF(pyIntermediateResultsKey);
-
-    DBR_FreeIntermediateResults(&pIResults);
-
 #if defined(IS_PY3K)
-    Py_DECREF(memoryview);
+	Py_DECREF(memoryview);
 #else
-    Py_DECREF(ao);
+	Py_DECREF(ao);
 #endif
-
-    return results;
+	return Py_BuildValue("i", ret);
 }
 
-/**
- * Decode file stream.
- * @param [in] fileStream ByteArray The image file bytes in memory.
- * @param [in] fileSize LONG The length of the file bytes in memory.
- * 
- * @return Returns a dictionary which includes text results and intermediate results.
- */
 static PyObject * DecodeFileStream(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -2945,13 +2663,11 @@ static PyObject * DecodeFileStream(PyObject *obj, PyObject *args)
     PyObject *op; 
     int fileSize;
     char *templateName = NULL;
-    char *encoding = NULL;
-    if (!PyArg_ParseTuple(args, "Oi|ss", &op, &fileSize, &templateName, &encoding))
+    if (!PyArg_ParseTuple(args, "Ois", &op, &fileSize, &templateName))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
 
-    TextResultArray *pResults = NULL;
     // https://docs.python.org/2/c-api/bytearray.html
     char *filestream = PyByteArray_AsString(op);
     if(templateName == NULL)
@@ -2960,47 +2676,16 @@ static PyObject * DecodeFileStream(PyObject *obj, PyObject *args)
     }
     // Barcode detection
     int ret = DBR_DecodeFileInMemory(self->hBarcode, filestream, fileSize, templateName);
-    if (ret)
-    {
-        printf("Detection error: %s\n", DBR_GetErrorString(ret));
-    }
-    DBR_GetAllTextResults(self->hBarcode, &pResults);
-    IntermediateResultArray * pIResults = NULL;
-    DBR_GetIntermediateResults(self->hBarcode, &pIResults);
-
-    if(encoding == NULL)
-    {
-        encoding = "utf8";
-    }
-
-    // Wrap results
-    PyObject * results = PyDict_New();
-
-    PyObject * pyTextResults = CreatePyTextResults(pResults, encoding);
-    if(pyTextResults == NULL)
-    {
-        return NULL;
-    }
-    PyObject * pyTextResultsKey = Py_BuildValue("s","TextResults");
-    PyDict_SetItem(results, pyTextResultsKey, pyTextResults);
-
-    Py_DECREF(pyTextResults);
-    Py_DECREF(pyTextResultsKey);
-
-    DBR_FreeTextResults(&pResults);
-
-    PyObject * pyIntermediateResults = CreatePyIntermediateResults(pIResults);
-    PyObject * pyIntermediateResultsKey = Py_BuildValue("s","IntermediateResults");
-    PyDict_SetItem(results, pyIntermediateResultsKey, pyIntermediateResults);
-
-    Py_DECREF(pyIntermediateResults);
-    Py_DECREF(pyIntermediateResultsKey);
-
-    DBR_FreeIntermediateResults(&pIResults);
-
-    return results;
+	return Py_BuildValue("i", ret);
 }
 
+static PyObject * GetLengthOfFrameQueue(PyObject *obj, PyObject *args)
+{
+	DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
+
+	int length = DBR_GetLengthOfFrameQueue(self->hBarcode);
+	return Py_BuildValue("i", length);
+}
 
 void OnResultCallback(int frameId, TextResultArray *pResults, void *pUser)
 {
@@ -3013,7 +2698,7 @@ void OnResultCallback(int frameId, TextResultArray *pResults, void *pUser)
     PyGILState_STATE gstate;
     gstate = PyGILState_Ensure();
 
-    PyObject * pyTextResults = CreatePyTextResults(pResults, "utf8");
+    PyObject * pyTextResults = CreatePyTextResults(pResults);
     if(pyTextResults != NULL)
     {
         PyObject * result = PyObject_CallFunction(self->py_callback, "O", pyTextResults);
@@ -3029,46 +2714,6 @@ void OnResultCallback(int frameId, TextResultArray *pResults, void *pUser)
     DBR_FreeTextResults(&pResults);
 }
 
-// static PyObject * SetErrorCallback(PyObject *obj, PyObject *args)
-// {
-//     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
-
-//     PyObject * callBackFunc = NULL;
-//     PyObject * pyUserData = NULL;
-
-//     if (!PyArg_ParseTuple(args, "OO", &callBackFunc, &pyUserData))
-//     {
-//         return NULL;
-//     }
-
-//     if (!PyCallable_Check(callBackFunc))
-//     {
-//         PyErr_SetString(PyExc_TypeError, "parameter must be callable");
-//         return NULL;
-//     }
-//     else
-//     {
-//         Py_XINCREF(callBackFunc);    /* Add a reference to new callback */
-//         Py_XDECREF(self->py_callback); /* Dispose of previous callback */
-//         self->py_callback = callback;
-//     }
-
-//     DBR_SetTextResultCallback(self->hBarcode, OnResultCallback, (void*)pyUserData);
-// }
-
-// static PyObject * SetTextResultCallback(PyObject *obj, PyObject *args)
-// {
-
-// }
-
-// static PyObject * SetIntermediateResultCallback(PyObject *obj, PyObject *args)
-// {
-
-// }
-
-/**
-* Init frame decoding parameters.
-*/
 static PyObject * InitFrameDecodingParameters(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -3078,9 +2723,6 @@ static PyObject * InitFrameDecodingParameters(PyObject *obj, PyObject *args)
     return frameParameters;
 }
 
-/**
- * Read barcodes from continuous video frames
- */
 static PyObject * StartVideoMode(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -3088,20 +2730,20 @@ static PyObject * StartVideoMode(PyObject *obj, PyObject *args)
     PyObject *pyParameters = NULL;
     PyObject *callback = NULL;
     char * templateName = NULL;
-    if (!PyArg_ParseTuple(args, "OO|s",&pyParameters, &callback, &templateName))
+    if (!PyArg_ParseTuple(args, "OOs",&pyParameters, &callback, &templateName))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     if(!PyDict_Check(pyParameters))
     {
         printf("the first parameter should be a dictionary.");
-        return NULL;
+		Py_RETURN_NONE;
     }
     if (!PyCallable_Check(callback))
     {
         PyErr_SetString(PyExc_TypeError, "parameter must be callable");
-        return NULL;
+		Py_RETURN_NONE;
     }
     else
     {
@@ -3140,7 +2782,7 @@ static PyObject * AppendVideoFrame(PyObject *obj, PyObject *args)
 
     PyObject *o;
     if (!PyArg_ParseTuple(args, "O", &o))
-        return NULL;
+		Py_RETURN_NONE;
 
 #if defined(IS_PY3K)
     //Refer to numpy/core/src/multiarray/ctors.c
@@ -3149,7 +2791,7 @@ static PyObject * AppendVideoFrame(PyObject *obj, PyObject *args)
     if (memoryview == NULL)
     {
         PyErr_Clear();
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     view = PyMemoryView_GET_BUFFER(memoryview);
@@ -3163,7 +2805,7 @@ static PyObject * AppendVideoFrame(PyObject *obj, PyObject *args)
     if ((ao == NULL) || !PyCObject_Check(ao))
     {
         PyErr_SetString(PyExc_TypeError, "object does not have array interface");
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     PyArrayInterface *pai = (PyArrayInterface *)PyCObject_AsVoidPtr(ao);
@@ -3172,7 +2814,7 @@ static PyObject * AppendVideoFrame(PyObject *obj, PyObject *args)
     {
         PyErr_SetString(PyExc_TypeError, "object does not have array interface");
         Py_DECREF(ao);
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     // Get image information
@@ -3185,15 +2827,6 @@ static PyObject * AppendVideoFrame(PyObject *obj, PyObject *args)
     return Py_BuildValue("i",frameId);
 }
 
-/**
- * Initializes barcode reader license from the license content on the client machine for offline verification.
- *
- * @param pLicenseKey: The license key of Barcode Reader.
- * @param pLicenseContent: An encrypted string representing the license content (runtime number, expiry date, barcode type, etc.) obtained from the method DBR_OutputLicenseToString().
- *
- * @return Return 0 if the function operates successfully, otherwise call
- * 		   DBR_GetErrorString to get detail message.
- */
 static PyObject * InitLicenseFromLicenseContent(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -3202,20 +2835,14 @@ static PyObject * InitLicenseFromLicenseContent(PyObject *obj, PyObject *args)
     char *pszLicenseContent;
     if (!PyArg_ParseTuple(args, "ss", &pszLicenseKey, &pszLicenseContent))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     int ret = DBR_InitLicenseFromLicenseContent(self->hBarcode, pszLicenseKey, pszLicenseContent);
-    const char* errorString = DBR_GetErrorString(ret);
-    printf("%s",errorString);
-    return Py_BuildValue("i", ret);
+	const char* errorString = DBR_GetErrorString(ret);
+	return Py_BuildValue("(i,s)", ret, errorString);
 }
 
-/**
- * Outputs the license content as an encrypted string from the license server to be used for offline license verification.
- *
- * @return if successful, return encypted string. Otherwise return error code. 
- */
 static PyObject * OutputLicenseToString(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -3224,7 +2851,6 @@ static PyObject * OutputLicenseToString(PyObject *obj, PyObject *args)
     int ret = DBR_OutputLicenseToStringPtr(self->hBarcode, &content);
     if (ret)
     {
-        printf("%s\n", DBR_GetErrorString(ret));
         return Py_BuildValue("i", ret);
     }
     else
@@ -3235,15 +2861,6 @@ static PyObject * OutputLicenseToString(PyObject *obj, PyObject *args)
     }
 }
 
-/**
- * Initializes barcode reader license from the license content on the client machine for offline verification.
- *
- * @param pLicenseKey: The license key of Barcode Reader.
- * @param pLicenseContent: An encrypted string representing the license content (runtime number, expiry date, barcode type, etc.) obtained from the method DBR_OutputLicenseToString().
- *
- * @return Return 0 if the function operates successfully, otherwise call
- * 		   DBR_GetErrorString to get detail message.
- */
 static PyObject * InitLicenseFromServer(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -3251,100 +2868,58 @@ static PyObject * InitLicenseFromServer(PyObject *obj, PyObject *args)
     char *pszLicenseKey, *pLicenseServer;
     if (!PyArg_ParseTuple(args, "ss", &pLicenseServer, &pszLicenseKey))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     int ret = DBR_InitLicenseFromServer(self->hBarcode, pLicenseServer, pszLicenseKey);
-    const char* errorString = DBR_GetErrorString(ret);
-    printf("%s",errorString);
-    return Py_BuildValue("i", ret);
+	const char* errorString = DBR_GetErrorString(ret);
+	return Py_BuildValue("(i,s)", ret, errorString);
 }
 
-/**
- * Set public settings with JSON object.
- *
- * @param json: the stringified JSON object.
- * 
- * @return Return 0 if the function operates successfully.
- */
 static PyObject * InitRuntimeSettingsByJsonString(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
 
     char *json;
-    if (!PyArg_ParseTuple(args, "s", &json))
+	int conflictMode;
+    if (!PyArg_ParseTuple(args, "si", &json, &conflictMode))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
 
-    char errorMessage[DEFAULT_MEMORY_SIZE];
-    int ret = DBR_InitRuntimeSettingsWithString(self->hBarcode, json, CM_OVERWRITE, errorMessage, 256);
-    if (ret) 
-    {
-        printf("Returned value: %d, error message: %s\n", ret, errorMessage);
-        PyErr_SetString(PyExc_TypeError, "DBR_InitRuntimeSettingsWithString() failed");
-        return Py_BuildValue("i", ret);
-    }
-    return Py_BuildValue("i", ret);
+    char errorMessage[512];
+    int ret = DBR_InitRuntimeSettingsWithString(self->hBarcode, json, conflictMode, errorMessage, 512);
+    return Py_BuildValue("(i,s)", ret, errorMessage);
 }
 
-/**
- * Set public settings with JSON object.
- *
- * @param jsonPath: the JSON file's path.
- * 
- * @return Return 0 if the function operates successfully.
- */
 static PyObject * InitRuntimeSettingsByJsonFile(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
 
     char *jsonPath;
-    if (!PyArg_ParseTuple(args, "s", &jsonPath))
+	int conflictMode;
+    if (!PyArg_ParseTuple(args, "si", &jsonPath, &conflictMode))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     char errorMessage[512];
-    int ret = DBR_InitRuntimeSettingsWithFile(self->hBarcode, jsonPath, CM_OVERWRITE, errorMessage, 512);
-    if (ret) 
-    {
-        printf("Returned value: %d, error message: %s\n", ret, errorMessage);
-        PyErr_SetString(PyExc_TypeError, "DBR_InitRuntimeSettingsWithFile() failed");
-        return Py_BuildValue("i", ret);
-    }
-    return Py_BuildValue("i", ret);
+    int ret = DBR_InitRuntimeSettingsWithFile(self->hBarcode, jsonPath, conflictMode, errorMessage, 512);
+	return Py_BuildValue("(i,s)", ret, errorMessage);
 }
 
-/**
- * Get public settings.
- *
- * @return Return stringified JSON object.
- */
 static PyObject * OutputSettingsToJsonString(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
 
-    char errorMessage[DEFAULT_MEMORY_SIZE];
     char * pContent = NULL;
 
     int ret = DBR_OutputSettingsToStringPtr(self->hBarcode, &pContent, "CurrentRuntimeSettings");
-    // printf("pContent: %s\n, string len: %d", pContent, strlen(pContent));
-    if (ret) 
-    {
-        printf("Returned value: %d, error message: %s\n", ret, errorMessage);
-        PyErr_SetString(PyExc_TypeError, "DBR_OutputSettingsToStringPtr() failed");
-        return NULL;
-    }
     PyObject * content = Py_BuildValue("s", pContent);
     DBR_FreeSettingsString(&pContent);
     return content;
 }
 
-/**
- * Get public settings to a json file.
- *
- */
 static PyObject * OutputSettingsToJsonFile(PyObject *obj, PyObject *args)
 {
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
@@ -3352,18 +2927,13 @@ static PyObject * OutputSettingsToJsonFile(PyObject *obj, PyObject *args)
     char * jsonPath;
     if (!PyArg_ParseTuple(args, "s", &jsonPath))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
-    char errorMessage[DEFAULT_MEMORY_SIZE];
 
     int ret = DBR_OutputSettingsToFile(self->hBarcode, jsonPath, "CurrentRuntimeSettings");
-    if (ret) 
-    {
-        printf("Returned value: %d, error message: %s\n", ret, errorMessage);
-        PyErr_SetString(PyExc_TypeError, "DBR_OutputSettingsToFile() failed");
-        return Py_BuildValue("i", ret);
-    }
-    return Py_BuildValue("i", ret);
+
+	const char* errorString = DBR_GetErrorString(ret);
+	return Py_BuildValue("(i,s)", ret, errorString);
 }
 
 static PyObject * AppendTplFileToRuntimeSettings(PyObject *obj, PyObject *args)
@@ -3374,18 +2944,13 @@ static PyObject * AppendTplFileToRuntimeSettings(PyObject *obj, PyObject *args)
     int conflictMode;
     if (!PyArg_ParseTuple(args, "si", &jsonPath, &conflictMode))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     char errorMessage[512];
     int ret = DBR_AppendTplFileToRuntimeSettings(self->hBarcode, jsonPath, conflictMode, errorMessage, 512);
-    if (ret) 
-    {
-        printf("Returned value: %d, error message: %s\n", ret, errorMessage);
-        PyErr_SetString(PyExc_TypeError, "DBR_AppendTplFileToRuntimeSettings() failed");
-        return Py_BuildValue("i", ret);
-    }
-    return Py_BuildValue("i", ret);
+
+    return Py_BuildValue("(i,s)", ret, errorMessage);
 }
 
 static PyObject * AppendTplStringToRuntimeSettings(PyObject *obj, PyObject *args)
@@ -3396,18 +2961,13 @@ static PyObject * AppendTplStringToRuntimeSettings(PyObject *obj, PyObject *args
     int conflictMode;
     if (!PyArg_ParseTuple(args, "si", &json, &conflictMode))
     {
-        return NULL;
+		Py_RETURN_NONE;
     }
 
     char errorMessage[512];
     int ret = DBR_AppendTplStringToRuntimeSettings(self->hBarcode, json, conflictMode, errorMessage, 512);
-    if (ret) 
-    {
-        printf("Returned value: %d, error message: %s\n", ret, errorMessage);
-        PyErr_SetString(PyExc_TypeError, "DBR_AppendTplStringToRuntimeSettings() failed");
-        return Py_BuildValue("i", ret);
-    }
-    return Py_BuildValue("i", ret);
+
+	return Py_BuildValue("(i,s)", ret, errorMessage);
 }
 
 static PyObject * GetAllTemplateNames(PyObject *obj, PyObject *args)
@@ -3415,7 +2975,12 @@ static PyObject * GetAllTemplateNames(PyObject *obj, PyObject *args)
     DynamsoftBarcodeReader *self = (DynamsoftBarcodeReader *)obj;
 
     int count = DBR_GetParameterTemplateCount(self->hBarcode);
+	if (count == 0)
+		Py_RETURN_NONE;
+
     PyObject * nameList = PyList_New(count);
+	if (nameList == NULL)
+		Py_RETURN_NONE;
     for(int i = 0; i < count; ++i)
     {
         char templateName[256];
@@ -3427,170 +2992,7 @@ static PyObject * GetAllTemplateNames(PyObject *obj, PyObject *args)
 }
 
 static PyMemberDef dbr_members[] = {
-    {"COLOR_CLUTERING_MODE",                    T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, COLOR_CLUTERING_MODE), 0, NULL},
-    {"COLOR_CONVERSION_MODE",                   T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, COLOR_CONVERSION_MODE), 0, NULL},
-    {"GRAY_SCALE_TRANSFORMATION_MODE",          T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, GRAY_SCALE_TRANSFORMATION_MODE), 0, NULL},
-    {"REGION_PREDETECTION_MODE",                T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, REGION_PREDETECTION_MODE), 0, NULL},
-    {"IMAGE_PREPROCESSING_MODE",                T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, IMAGE_PREPROCESSING_MODE), 0, NULL},
-    {"TEXTURE_DETECTION_MODE",                  T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, TEXTURE_DETECTION_MODE), 0, NULL},
-    {"TEXTURE_FILTER_MODE",                     T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, TEXTURE_FILTER_MODE), 0, NULL},
-    {"TEXT_ASSISTED_CORRECTION_MODE",           T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, TEXT_ASSISTED_CORRECTION_MODE), 0, NULL},
-    {"DPM_CODE_READING_MODE",                   T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, DPM_CODE_READING_MODE), 0, NULL},
-    {"DEFORMATION_RESISTING_MODE",              T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, DEFORMATION_RESISTING_MODE), 0, NULL},
-    {"BARCODE_COMPLEMENT_MODE",                 T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, BARCODE_COMPLEMENT_MODE), 0, NULL},
-    {"BARCODE_COLOR_MODE",                      T_OBJECT_EX, offsetof(DynamsoftBarcodeReader, BARCODE_COLOR_MODE), 0, NULL},
-    {"GTM_INVERTED",                            T_INT, offsetof(DynamsoftBarcodeReader, GTM_INVERTED), 0, NULL},
-    {"GTM_ORIGINAL",                            T_INT, offsetof(DynamsoftBarcodeReader, GTM_ORIGINAL), 0, NULL},
-    {"GTM_SKIP",                                T_INT, offsetof(DynamsoftBarcodeReader, GTM_SKIP), 0, NULL},
-    {"BF_ALL",                                  T_INT, offsetof(DynamsoftBarcodeReader, BF_ALL), 0, NULL},
-    {"BF_ONED",                                 T_INT, offsetof(DynamsoftBarcodeReader, BF_ONED), 0, NULL},
-    {"BF_GS1_DATABAR",                          T_INT, offsetof(DynamsoftBarcodeReader, BF_GS1_DATABAR), 0, NULL},
-    {"BF_POSTALCODE",                           T_INT, offsetof(DynamsoftBarcodeReader, BF_POSTALCODE), 0, NULL},
-    {"BF_CODE_39",                              T_INT, offsetof(DynamsoftBarcodeReader, BF_CODE_39), 0, NULL},
-    {"BF_CODE_128",                             T_INT, offsetof(DynamsoftBarcodeReader, BF_CODE_128), 0, NULL},
-    {"BF_CODE_93",                              T_INT, offsetof(DynamsoftBarcodeReader, BF_CODE_93), 0, NULL},
-    {"BF_CODABAR",                              T_INT, offsetof(DynamsoftBarcodeReader, BF_CODABAR), 0, NULL},
-    {"BF_ITF",                                  T_INT, offsetof(DynamsoftBarcodeReader, BF_ITF), 0, NULL},
-    {"BF_EAN_13",                               T_INT, offsetof(DynamsoftBarcodeReader, BF_EAN_13), 0, NULL},
-    {"BF_EAN_8",                                T_INT, offsetof(DynamsoftBarcodeReader, BF_EAN_8), 0, NULL},
-    {"BF_UPC_A",                                T_INT, offsetof(DynamsoftBarcodeReader, BF_UPC_A), 0, NULL},
-    {"BF_UPC_E",                                T_INT, offsetof(DynamsoftBarcodeReader, BF_UPC_E), 0, NULL},
-    {"BF_INDUSTRIAL_25",                        T_INT, offsetof(DynamsoftBarcodeReader, BF_INDUSTRIAL_25), 0, NULL},
-    {"BF_CODE_39_EXTENDED",                     T_INT, offsetof(DynamsoftBarcodeReader, BF_CODE_39_EXTENDED), 0, NULL},
-    {"BF_GS1_DATABAR_OMNIDIRECTIONAL",          T_INT, offsetof(DynamsoftBarcodeReader, BF_GS1_DATABAR_OMNIDIRECTIONAL), 0, NULL},
-    {"BF_GS1_DATABAR_TRUNCATED",                T_INT, offsetof(DynamsoftBarcodeReader, BF_GS1_DATABAR_TRUNCATED), 0, NULL},
-    {"BF_GS1_DATABAR_STACKED",                  T_INT, offsetof(DynamsoftBarcodeReader, BF_GS1_DATABAR_STACKED), 0, NULL},
-    {"BF_GS1_DATABAR_STACKED_OMNIDIRECTIONAL",  T_INT, offsetof(DynamsoftBarcodeReader, BF_GS1_DATABAR_STACKED_OMNIDIRECTIONAL), 0, NULL},
-    {"BF_GS1_DATABAR_EXPANDED",                 T_INT, offsetof(DynamsoftBarcodeReader, BF_GS1_DATABAR_EXPANDED), 0, NULL},
-    {"BF_GS1_DATABAR_EXPANDED_STACKED",         T_INT, offsetof(DynamsoftBarcodeReader, BF_GS1_DATABAR_EXPANDED_STACKED), 0, NULL},
-    {"BF_GS1_DATABAR_LIMITED",                  T_INT, offsetof(DynamsoftBarcodeReader, BF_GS1_DATABAR_LIMITED), 0, NULL},
-    {"BF_PATCHCODE",                            T_INT, offsetof(DynamsoftBarcodeReader, BF_PATCHCODE), 0, NULL},
-    {"BF_USPSINTELLIGENTMAIL",                  T_INT, offsetof(DynamsoftBarcodeReader, BF_USPSINTELLIGENTMAIL), 0, NULL},
-    {"BF_PLANET",                               T_INT, offsetof(DynamsoftBarcodeReader, BF_PLANET), 0, NULL},
-    {"BF_AUSTRALIANPOST",                       T_INT, offsetof(DynamsoftBarcodeReader, BF_AUSTRALIANPOST), 0, NULL},
-    {"BF_UKROYALMAIL",                          T_INT, offsetof(DynamsoftBarcodeReader, BF_UKROYALMAIL), 0, NULL},
-    {"BF_PDF417",                               T_INT, offsetof(DynamsoftBarcodeReader, BF_PDF417), 0, NULL},
-    {"BF_QR_CODE",                              T_INT, offsetof(DynamsoftBarcodeReader, BF_QR_CODE), 0, NULL},
-    {"BF_DATAMATRIX",                           T_INT, offsetof(DynamsoftBarcodeReader, BF_DATAMATRIX), 0, NULL},
-    {"BF_AZTEC",                                T_INT, offsetof(DynamsoftBarcodeReader, BF_AZTEC), 0, NULL},
-    {"BF_MAXICODE",                             T_INT, offsetof(DynamsoftBarcodeReader, BF_MAXICODE), 0, NULL},
-    {"BF_MICRO_QR",                             T_INT, offsetof(DynamsoftBarcodeReader, BF_MICRO_QR), 0, NULL},
-    {"BF_MICRO_PDF417",                         T_INT, offsetof(DynamsoftBarcodeReader, BF_MICRO_PDF417), 0, NULL},
-    {"BF_GS1_COMPOSITE",                        T_INT, offsetof(DynamsoftBarcodeReader, BF_GS1_COMPOSITE), 0, NULL},
-    {"BF_NULL",                                 T_INT, offsetof(DynamsoftBarcodeReader, BF_NULL), 0, NULL},
-    {"BF2_NULL",                                T_INT, offsetof(DynamsoftBarcodeReader, BF2_NULL), 0, NULL},
-    {"BF2_NONSTANDARD_BARCODE",                 T_INT, offsetof(DynamsoftBarcodeReader, BF2_NONSTANDARD_BARCODE), 0, NULL},
-    {"BCM_AUTO",                                T_INT, offsetof(DynamsoftBarcodeReader, BCM_AUTO), 0, NULL},
-    {"BCM_GENERAL",                             T_INT, offsetof(DynamsoftBarcodeReader, BCM_GENERAL), 0, NULL},
-    {"BCM_SKIP",                                T_INT, offsetof(DynamsoftBarcodeReader, BCM_SKIP), 0, NULL},
-    {"IPF_BINARY",                              T_INT, offsetof(DynamsoftBarcodeReader, IPF_BINARY), 0, NULL},
-    {"IPF_BINARYINVERTED",                      T_INT, offsetof(DynamsoftBarcodeReader, IPF_BINARYINVERTED), 0, NULL},
-    {"IPF_GRAYSCALED",                          T_INT, offsetof(DynamsoftBarcodeReader, IPF_GRAYSCALED), 0, NULL},
-    {"IPF_NV21",                                T_INT, offsetof(DynamsoftBarcodeReader, IPF_NV21), 0, NULL},
-    {"IPF_RGB_565",                             T_INT, offsetof(DynamsoftBarcodeReader, IPF_RGB_565), 0, NULL},
-    {"IPF_RGB_555",                             T_INT, offsetof(DynamsoftBarcodeReader, IPF_RGB_555), 0, NULL},
-    {"IPF_RGB_888",                             T_INT, offsetof(DynamsoftBarcodeReader, IPF_RGB_888), 0, NULL},
-    {"IPF_ARGB_8888",                           T_INT, offsetof(DynamsoftBarcodeReader, IPF_ARGB_8888), 0, NULL},
-    {"IPF_RGB_161616",                          T_INT, offsetof(DynamsoftBarcodeReader, IPF_RGB_161616), 0, NULL},
-    {"IPF_ARGB_16161616",                       T_INT, offsetof(DynamsoftBarcodeReader, IPF_ARGB_16161616), 0, NULL},
-    {"RT_STANDARD_TEXT",                        T_INT, offsetof(DynamsoftBarcodeReader, RT_STANDARD_TEXT), 0, NULL},
-    {"RT_RAW_TEXT",                             T_INT, offsetof(DynamsoftBarcodeReader, RT_RAW_TEXT), 0, NULL},
-    {"RT_CANDIDATE_TEXT",                       T_INT, offsetof(DynamsoftBarcodeReader, RT_CANDIDATE_TEXT), 0, NULL},
-    {"RT_PARTIAL_TEXT",                         T_INT, offsetof(DynamsoftBarcodeReader, RT_PARTIAL_TEXT), 0, NULL},
-    {"TP_REGION_PREDETECTED",                   T_INT, offsetof(DynamsoftBarcodeReader, TP_REGION_PREDETECTED), 0, NULL},
-    {"TP_IMAGE_PREPROCESSED",                   T_INT, offsetof(DynamsoftBarcodeReader, TP_IMAGE_PREPROCESSED), 0, NULL},
-    {"TP_IMAGE_BINARIZED",                      T_INT, offsetof(DynamsoftBarcodeReader, TP_IMAGE_BINARIZED), 0, NULL},
-    {"TP_BARCODE_LOCALIZED",                    T_INT, offsetof(DynamsoftBarcodeReader, TP_BARCODE_LOCALIZED), 0, NULL},
-    {"TP_BARCODE_TYPE_DETERMINED",              T_INT, offsetof(DynamsoftBarcodeReader, TP_BARCODE_TYPE_DETERMINED), 0, NULL},
-    {"TP_BARCODE_RECOGNIZED",                   T_INT, offsetof(DynamsoftBarcodeReader, TP_BARCODE_RECOGNIZED), 0, NULL},
-    {"BICM_DARK_ON_LIGHT",                      T_INT, offsetof(DynamsoftBarcodeReader, BICM_DARK_ON_LIGHT), 0, NULL},
-    {"BICM_LIGHT_ON_DARK",                      T_INT, offsetof(DynamsoftBarcodeReader, BICM_LIGHT_ON_DARK), 0, NULL},
-    {"BICM_DARK_ON_DARK",                       T_INT, offsetof(DynamsoftBarcodeReader, BICM_DARK_ON_DARK), 0, NULL},
-    {"BICM_LIGHT_ON_LIGHT",                     T_INT, offsetof(DynamsoftBarcodeReader, BICM_LIGHT_ON_LIGHT), 0, NULL},
-    {"BICM_DARK_LIGHT_MIXED",                   T_INT, offsetof(DynamsoftBarcodeReader, BICM_DARK_LIGHT_MIXED), 0, NULL},
-    {"BICM_DARK_ON_LIGHT_DARK_SURROUNDING",     T_INT, offsetof(DynamsoftBarcodeReader, BICM_DARK_ON_LIGHT_DARK_SURROUNDING), 0, NULL},
-    {"BICM_SKIP",                               T_INT, offsetof(DynamsoftBarcodeReader, BICM_SKIP), 0, NULL},
-    {"BM_AUTO",                                 T_INT, offsetof(DynamsoftBarcodeReader, BM_AUTO), 0, NULL},
-    {"BM_LOCAL_BLOCK",                          T_INT, offsetof(DynamsoftBarcodeReader, BM_LOCAL_BLOCK), 0, NULL},
-    {"BM_SKIP",                                 T_INT, offsetof(DynamsoftBarcodeReader, BM_SKIP), 0, NULL},
-    {"CCM_AUTO",                                T_INT, offsetof(DynamsoftBarcodeReader, CCM_AUTO), 0, NULL},
-    {"CCM_GENERAL_HSV",                         T_INT, offsetof(DynamsoftBarcodeReader, CCM_GENERAL_HSV), 0, NULL},
-    {"CCM_SKIP",                                T_INT, offsetof(DynamsoftBarcodeReader, CCM_SKIP), 0, NULL},
-    {"CICM_GENERAL",                            T_INT, offsetof(DynamsoftBarcodeReader, CICM_GENERAL), 0, NULL},
-    {"CICM_SKIP",                               T_INT, offsetof(DynamsoftBarcodeReader, CICM_SKIP), 0, NULL},
-    {"DPMCRM_AUTO",                             T_INT, offsetof(DynamsoftBarcodeReader, DPMCRM_AUTO), 0, NULL},
-    {"DPMCRM_GENERAL",                          T_INT, offsetof(DynamsoftBarcodeReader, DPMCRM_GENERAL), 0, NULL},
-    {"DPMCRM_SKIP",                             T_INT, offsetof(DynamsoftBarcodeReader, DPMCRM_SKIP), 0, NULL},
-    {"RPM_AUTO",                                T_INT, offsetof(DynamsoftBarcodeReader, RPM_AUTO), 0, NULL},
-    {"RPM_GENERAL",                             T_INT, offsetof(DynamsoftBarcodeReader, RPM_GENERAL), 0, NULL},
-    {"RPM_GENERAL_RGB_CONTRAST",                T_INT, offsetof(DynamsoftBarcodeReader, RPM_GENERAL_RGB_CONTRAST), 0, NULL},
-    {"RPM_GENERAL_GRAY_CONTRAST",               T_INT, offsetof(DynamsoftBarcodeReader, RPM_GENERAL_GRAY_CONTRAST), 0, NULL},
-    {"RPM_GENERAL_HSV_CONTRAST",                T_INT, offsetof(DynamsoftBarcodeReader, RPM_GENERAL_HSV_CONTRAST), 0, NULL},
-    {"RPM_SKIP",                                T_INT, offsetof(DynamsoftBarcodeReader, RPM_SKIP), 0, NULL},
-    {"TFM_AUTO",                                T_INT, offsetof(DynamsoftBarcodeReader, TFM_AUTO), 0, NULL},
-    {"TFM_GENERAL_CONTOUR",                     T_INT, offsetof(DynamsoftBarcodeReader, TFM_GENERAL_CONTOUR), 0, NULL},
-    {"TFM_SKIP",                                T_INT, offsetof(DynamsoftBarcodeReader, TFM_SKIP), 0, NULL},
-    {"CM_IGNORE",                               T_INT, offsetof(DynamsoftBarcodeReader, CM_IGNORE), 0, NULL},
-    {"CM_OVERWRITE",                            T_INT, offsetof(DynamsoftBarcodeReader, CM_OVERWRITE), 0, NULL},
-    {"IPM_AUTO",                                T_INT, offsetof(DynamsoftBarcodeReader, IPM_AUTO), 0, NULL},
-    {"IPM_GENERAL",                             T_INT, offsetof(DynamsoftBarcodeReader, IPM_GENERAL), 0, NULL},
-    {"IPM_GRAY_EQUALIZE",                       T_INT, offsetof(DynamsoftBarcodeReader, IPM_GRAY_EQUALIZE), 0, NULL},
-    {"IPM_GRAY_SMOOTH",                         T_INT, offsetof(DynamsoftBarcodeReader, IPM_GRAY_SMOOTH), 0, NULL},
-    {"IPM_SHARPEN_SMOOTH",                      T_INT, offsetof(DynamsoftBarcodeReader, IPM_SHARPEN_SMOOTH), 0, NULL},
-    {"IPM_SKIP",                                T_INT, offsetof(DynamsoftBarcodeReader, IPM_SKIP), 0, NULL},
-    {"IRT_NO_RESULT",                           T_INT, offsetof(DynamsoftBarcodeReader, IRT_NO_RESULT), 0, NULL},
-    {"IRT_ORIGINAL_IMAGE",                      T_INT, offsetof(DynamsoftBarcodeReader, IRT_ORIGINAL_IMAGE), 0, NULL},
-    {"IRT_COLOUR_CLUSTERED_IMAGE",              T_INT, offsetof(DynamsoftBarcodeReader, IRT_COLOUR_CLUSTERED_IMAGE), 0, NULL},
-    {"IRT_COLOUR_CONVERTED_GRAYSCALE_IMAGE",    T_INT, offsetof(DynamsoftBarcodeReader, IRT_COLOUR_CONVERTED_GRAYSCALE_IMAGE), 0, NULL},
-    {"IRT_TRANSFORMED_GRAYSCALE_IMAGE",         T_INT, offsetof(DynamsoftBarcodeReader, IRT_TRANSFORMED_GRAYSCALE_IMAGE), 0, NULL},
-    {"IRT_PREDETECTED_REGION",                  T_INT, offsetof(DynamsoftBarcodeReader, IRT_PREDETECTED_REGION), 0, NULL},
-    {"IRT_PREPROCESSED_IMAGE",                  T_INT, offsetof(DynamsoftBarcodeReader, IRT_PREPROCESSED_IMAGE), 0, NULL},
-    {"IRT_BINARIZED_IMAGE",                     T_INT, offsetof(DynamsoftBarcodeReader, IRT_BINARIZED_IMAGE), 0, NULL},
-    {"IRT_TEXT_ZONE",                           T_INT, offsetof(DynamsoftBarcodeReader, IRT_TEXT_ZONE), 0, NULL},
-    {"IRT_CONTOUR",                             T_INT, offsetof(DynamsoftBarcodeReader, IRT_CONTOUR), 0, NULL},
-    {"IRT_LINE_SEGMENT",                        T_INT, offsetof(DynamsoftBarcodeReader, IRT_LINE_SEGMENT), 0, NULL},
-    {"IRT_FORM",                                T_INT, offsetof(DynamsoftBarcodeReader, IRT_FORM), 0, NULL},
-    {"IRT_SEGMENTATION_BLOCK",                  T_INT, offsetof(DynamsoftBarcodeReader, IRT_SEGMENTATION_BLOCK), 0, NULL},
-    {"IRT_TYPED_BARCODE_ZONE",                  T_INT, offsetof(DynamsoftBarcodeReader, IRT_TYPED_BARCODE_ZONE), 0, NULL},
-    {"LM_AUTO",                                 T_INT, offsetof(DynamsoftBarcodeReader, LM_AUTO), 0, NULL},
-    {"LM_CONNECTED_BLOCKS",                     T_INT, offsetof(DynamsoftBarcodeReader, LM_CONNECTED_BLOCKS), 0, NULL},
-    {"LM_STATISTICS",                           T_INT, offsetof(DynamsoftBarcodeReader, LM_STATISTICS), 0, NULL},
-    {"LM_LINES",                                T_INT, offsetof(DynamsoftBarcodeReader, LM_LINES), 0, NULL},
-    {"LM_SCAN_DIRECTLY",                        T_INT, offsetof(DynamsoftBarcodeReader, LM_SCAN_DIRECTLY), 0, NULL},
-    {"LM_STATISTICS_MARKS",                     T_INT, offsetof(DynamsoftBarcodeReader, LM_STATISTICS_MARKS), 0, NULL},
-    {"LM_SKIP",                                 T_INT, offsetof(DynamsoftBarcodeReader, LM_SKIP), 0, NULL},
-    {"QRECL_ERROR_CORRECTION_H",                T_INT, offsetof(DynamsoftBarcodeReader, QRECL_ERROR_CORRECTION_H), 0, NULL},
-    {"QRECL_ERROR_CORRECTION_L",                T_INT, offsetof(DynamsoftBarcodeReader, QRECL_ERROR_CORRECTION_L), 0, NULL},
-    {"QRECL_ERROR_CORRECTION_M",                T_INT, offsetof(DynamsoftBarcodeReader, QRECL_ERROR_CORRECTION_M), 0, NULL},
-    {"QRECL_ERROR_CORRECTION_Q",                T_INT, offsetof(DynamsoftBarcodeReader, QRECL_ERROR_CORRECTION_Q), 0, NULL},
-    {"DRM_AUTO",                                T_INT, offsetof(DynamsoftBarcodeReader, DRM_AUTO), 0, NULL},
-    {"DRM_GENERAL",                             T_INT, offsetof(DynamsoftBarcodeReader, DRM_GENERAL), 0, NULL},
-    {"DRM_SKIP",                                T_INT, offsetof(DynamsoftBarcodeReader, DRM_SKIP), 0, NULL},
-    {"TACM_AUTO",                               T_INT, offsetof(DynamsoftBarcodeReader, TACM_AUTO), 0, NULL},
-    {"TACM_VERIFYING",                          T_INT, offsetof(DynamsoftBarcodeReader, TACM_VERIFYING), 0, NULL},
-    {"TACM_VERIFYING_PATCHING",                 T_INT, offsetof(DynamsoftBarcodeReader, TACM_VERIFYING_PATCHING), 0, NULL},
-    {"TACM_SKIP",                               T_INT, offsetof(DynamsoftBarcodeReader, TACM_SKIP), 0, NULL},
-    {"TROM_CONFIDENCE",                         T_INT, offsetof(DynamsoftBarcodeReader, TROM_CONFIDENCE), 0, NULL},
-    {"TROM_POSITION",                           T_INT, offsetof(DynamsoftBarcodeReader, TROM_POSITION), 0, NULL},
-    {"TROM_FORMAT",                             T_INT, offsetof(DynamsoftBarcodeReader, TROM_FORMAT), 0, NULL},
-    {"TROM_SKIP",                               T_INT, offsetof(DynamsoftBarcodeReader, TROM_SKIP), 0, NULL},
-    {"TDM_AUTO",                                T_INT, offsetof(DynamsoftBarcodeReader, TDM_AUTO), 0, NULL},
-    {"TDM_GENERAL_WIDTH_CONCENTRATION",         T_INT, offsetof(DynamsoftBarcodeReader, TDM_GENERAL_WIDTH_CONCENTRATION), 0, NULL},
-    {"TDM_SKIP",                                T_INT, offsetof(DynamsoftBarcodeReader, TDM_SKIP), 0, NULL},
-    {"GTM_INVERTED",                            T_INT, offsetof(DynamsoftBarcodeReader, GTM_INVERTED), 0, NULL},
-    {"GTM_ORIGINAL",                            T_INT, offsetof(DynamsoftBarcodeReader, GTM_ORIGINAL), 0, NULL},
-    {"GTM_SKIP",                                T_INT, offsetof(DynamsoftBarcodeReader, GTM_SKIP), 0, NULL},
-    {"RCT_PIXEL",                               T_INT, offsetof(DynamsoftBarcodeReader, RCT_PIXEL), 0, NULL},
-    {"RCT_PERCENTAGE",                          T_INT, offsetof(DynamsoftBarcodeReader, RCT_PERCENTAGE), 0, NULL},
-    {"IMRDT_IMAGE",                             T_INT, offsetof(DynamsoftBarcodeReader, IMRDT_IMAGE), 0, NULL},
-    {"IMRDT_CONTOUR",                           T_INT, offsetof(DynamsoftBarcodeReader, IMRDT_CONTOUR), 0, NULL},
-    {"IMRDT_LINESEGMENT",                       T_INT, offsetof(DynamsoftBarcodeReader, IMRDT_LINESEGMENT), 0, NULL},
-    {"IMRDT_LOCALIZATIONRESULT",                T_INT, offsetof(DynamsoftBarcodeReader, IMRDT_LOCALIZATIONRESULT), 0, NULL},
-    {"IMRDT_REGIONOFINTEREST",                  T_INT, offsetof(DynamsoftBarcodeReader, IMRDT_REGIONOFINTEREST), 0, NULL},
-    {"IRSM_MEMORY",                             T_INT, offsetof(DynamsoftBarcodeReader, IRSM_MEMORY), 0, NULL},
-    {"IRSM_FILESYSTEM",                         T_INT, offsetof(DynamsoftBarcodeReader, IRSM_FILESYSTEM), 0, NULL},
-    {"IRSM_BOTH",                               T_INT, offsetof(DynamsoftBarcodeReader, IRSM_BOTH), 0, NULL},
-    {NULL} /* Sentinel */
+    {NULL}
 };
 
 static PyMethodDef dbr_methods[] = {
@@ -3607,6 +3009,11 @@ static PyMethodDef dbr_methods[] = {
     {"setParameters",                   setParameters,                      METH_VARARGS, NULL},
     {"getParameters",                   getParameters,                      METH_VARARGS, NULL},
     {"decodeFileStream",                decodeFileStream,                   METH_VARARGS, NULL},
+	{"GetDBRVersion",					GetDBRVersion,						METH_VARARGS, NULL},
+	{"GetErrorString",                  GetErrorString,                     METH_VARARGS, NULL},
+	{"GetAllTextResults",               GetAllTextResults,                  METH_VARARGS, NULL},
+	{"GetAllIntermediateResults",       GetAllIntermediateResults,          METH_VARARGS, NULL},
+	{"GetLengthOfFrameQueue",			GetLengthOfFrameQueue,				METH_VARARGS, NULL},
     {"InitLicense",                     InitLicense,                        METH_VARARGS, NULL},
     {"DecodeFile",                      DecodeFile,                         METH_VARARGS, NULL},
     {"DecodeBuffer",                    DecodeBuffer,                       METH_VARARGS, NULL},
@@ -3640,58 +3047,7 @@ static PyMethodDef module_methods[] =
 
 static int DynamsoftBarcodeReader_clear(DynamsoftBarcodeReader *self)
 {
-    PyObject *tmp;
-
-    tmp = self->COLOR_CLUTERING_MODE;
-    self->COLOR_CLUTERING_MODE = NULL;
-    Py_XDECREF(tmp);
-
-    tmp = self->COLOR_CONVERSION_MODE;
-    self->COLOR_CONVERSION_MODE = NULL;
-    Py_XDECREF(tmp);
-
-    tmp = self->GRAY_SCALE_TRANSFORMATION_MODE;
-    self->GRAY_SCALE_TRANSFORMATION_MODE = NULL;
-    Py_XDECREF(tmp);
-
-    tmp = self->REGION_PREDETECTION_MODE;
-    self->REGION_PREDETECTION_MODE = NULL;
-    Py_XDECREF(tmp);
-
-    tmp = self->IMAGE_PREPROCESSING_MODE;
-    self->IMAGE_PREPROCESSING_MODE = NULL;
-    Py_XDECREF(tmp);
-
-    tmp = self->TEXTURE_DETECTION_MODE;
-    self->TEXTURE_DETECTION_MODE = NULL;
-    Py_XDECREF(tmp);
-
-    tmp = self->TEXTURE_FILTER_MODE;
-    self->TEXTURE_FILTER_MODE = NULL;
-    Py_XDECREF(tmp);
-
-    tmp = self->TEXT_ASSISTED_CORRECTION_MODE;
-    self->TEXT_ASSISTED_CORRECTION_MODE = NULL;
-    Py_XDECREF(tmp);
-
-    tmp = self->DPM_CODE_READING_MODE;
-    self->DPM_CODE_READING_MODE = NULL;
-    Py_XDECREF(tmp);
-
-    tmp = self->DEFORMATION_RESISTING_MODE;
-    self->DEFORMATION_RESISTING_MODE = NULL;
-    Py_XDECREF(tmp);
-
-    tmp = self->BARCODE_COMPLEMENT_MODE;
-    self->BARCODE_COMPLEMENT_MODE = NULL;
-    Py_XDECREF(tmp);
-
-    tmp = self->BARCODE_COLOR_MODE;
-    self->BARCODE_COLOR_MODE = NULL;
-    Py_XDECREF(tmp);
-
     DBR_DestroyInstance(self->hBarcode);
-
     return 0;
 }
 
@@ -3719,215 +3075,6 @@ static PyObject * DynamsoftBarcodeReader_new(PyTypeObject *type, PyObject *args,
         if (!self->hBarcode)
         {
             printf("Cannot allocate memory!\n");
-            return NULL;
-        }
-
-#ifdef IS_PY3K
-        self->COLOR_CLUTERING_MODE              = PyUnicode_FromString("colourClusteringModes");
-        self->COLOR_CONVERSION_MODE             = PyUnicode_FromString("colourConversionModes");
-        self->GRAY_SCALE_TRANSFORMATION_MODE    = PyUnicode_FromString("grayscaleTransformationModes");
-        self->REGION_PREDETECTION_MODE          = PyUnicode_FromString("regionPredetectionMode");
-        self->IMAGE_PREPROCESSING_MODE          = PyUnicode_FromString("imagePreprocessingModes");
-        self->TEXTURE_DETECTION_MODE            = PyUnicode_FromString("textureDetectionModes");
-        self->TEXTURE_FILTER_MODE               = PyUnicode_FromString("textFilterModes");
-        self->TEXT_ASSISTED_CORRECTION_MODE     = PyUnicode_FromString("textAssistedCorrectionMode ");
-        self->DPM_CODE_READING_MODE             = PyUnicode_FromString("dpmCodeReadingModes");
-        self->DEFORMATION_RESISTING_MODE        = PyUnicode_FromString("deformationResistingModes");
-        self->BARCODE_COMPLEMENT_MODE           = PyUnicode_FromString("barcodeComplementModes");
-        self->BARCODE_COLOR_MODE                = PyUnicode_FromString("barcodeColourModes");
-#else
-        self->COLOR_CLUTERING_MODE              = PyString_FromString("colourClusteringModes");
-        self->COLOR_CONVERSION_MODE             = PyString_FromString("colourConversionModes");
-        self->GRAY_SCALE_TRANSFORMATION_MODE    = PyString_FromString("grayscaleTransformationModes");
-        self->REGION_PREDETECTION_MODE          = PyString_FromString("regionPredetectionMode");
-        self->IMAGE_PREPROCESSING_MODE          = PyString_FromString("imagePreprocessingModes");
-        self->TEXTURE_DETECTION_MODE            = PyString_FromString("textureDetectionModes");
-        self->TEXTURE_FILTER_MODE               = PyString_FromString("textFilterModes");
-        self->TEXT_ASSISTED_CORRECTION_MODE     = PyString_FromString("textAssistedCorrectionMode ");
-        self->DPM_CODE_READING_MODE             = PyString_FromString("dpmCodeReadingModes");
-        self->DEFORMATION_RESISTING_MODE        = PyString_FromString("deformationResistingModes");
-        self->BARCODE_COMPLEMENT_MODE           = PyString_FromString("barcodeComplementModes");
-        self->BARCODE_COLOR_MODE                = PyString_FromString("barcodeColourModes");
-#endif
-        // Barcode formats
-        self->BF_ALL                            = BF_ALL;
-        self->BF_ONED                           = BF_ONED;
-        self->BF_GS1_DATABAR                    = BF_GS1_DATABAR;
-        self->BF_POSTALCODE                     = BF_POSTALCODE;
-        self->BF_CODE_39                        = BF_CODE_39;
-        self->BF_CODE_128                       = BF_CODE_128;
-        self->BF_CODE_93                        = BF_CODE_93;
-        self->BF_CODABAR                        = BF_CODABAR;
-        self->BF_ITF                            = BF_ITF;
-        self->BF_EAN_13                         = BF_EAN_13;
-        self->BF_EAN_8                          = BF_EAN_8;
-        self->BF_UPC_A                          = BF_UPC_A;
-        self->BF_UPC_E                          = BF_UPC_E;
-        self->BF_INDUSTRIAL_25                  = BF_INDUSTRIAL_25;
-        self->BF_CODE_39_EXTENDED               = BF_CODE_39_EXTENDED;
-        self->BF_GS1_DATABAR_OMNIDIRECTIONAL    = BF_GS1_DATABAR_OMNIDIRECTIONAL;
-        self->BF_GS1_DATABAR_TRUNCATED          = BF_GS1_DATABAR_TRUNCATED;
-        self->BF_GS1_DATABAR_STACKED            = BF_GS1_DATABAR_STACKED;
-        self->BF_GS1_DATABAR_STACKED_OMNIDIRECTIONAL = BF_GS1_DATABAR_STACKED_OMNIDIRECTIONAL;
-        self->BF_GS1_DATABAR_EXPANDED           = BF_GS1_DATABAR_EXPANDED;
-        self->BF_GS1_DATABAR_EXPANDED_STACKED   = BF_GS1_DATABAR_EXPANDED_STACKED;
-        self->BF_GS1_DATABAR_LIMITED            = BF_GS1_DATABAR_LIMITED;
-        self->BF_PATCHCODE                      = BF_PATCHCODE;
-        self->BF_USPSINTELLIGENTMAIL            = BF_USPSINTELLIGENTMAIL;
-        self->BF_POSTNET                        = BF_POSTNET;
-        self->BF_PLANET                         = BF_PLANET;
-        self->BF_AUSTRALIANPOST                 = BF_AUSTRALIANPOST;
-        self->BF_UKROYALMAIL                    = BF_UKROYALMAIL;
-        self->BF_PDF417                         = BF_PDF417;
-        self->BF_QR_CODE                        = BF_QR_CODE;
-        self->BF_DATAMATRIX                     = BF_DATAMATRIX;
-        self->BF_AZTEC                          = BF_AZTEC;
-        self->BF_MAXICODE                       = BF_MAXICODE;
-        self->BF_MICRO_QR                       = BF_MICRO_QR;
-        self->BF_MICRO_PDF417                   = BF_MICRO_PDF417;
-        self->BF_GS1_COMPOSITE                  = BF_GS1_COMPOSITE;
-        self->BF_NULL                           = BF_NULL;
-        // EnumBarcodeReader_2
-        self->BF2_NULL                          = BF2_NULL;
-        self->BF2_NONSTANDARD_BARCODE           = BF2_NONSTANDARD_BARCODE;
-        // EnumBarcodeComplementMode
-        self->BCM_AUTO                          = BCM_AUTO;
-        self->BCM_GENERAL                       = BCM_GENERAL;
-        self->BCM_SKIP                          = BCM_SKIP;
-        // EnumImagePixelFormat
-        self->IPF_BINARY                        = IPF_BINARY;
-        self->IPF_BINARYINVERTED                = IPF_BINARYINVERTED;
-        self->IPF_GRAYSCALED                    = IPF_GRAYSCALED;
-        self->IPF_NV21                          = IPF_NV21;
-        self->IPF_RGB_565                       = IPF_RGB_565;
-        self->IPF_RGB_555                       = IPF_RGB_555;
-        self->IPF_RGB_888                       = IPF_RGB_888;
-        self->IPF_ARGB_8888                     = IPF_ARGB_8888;
-        self->IPF_RGB_161616                    = IPF_RGB_161616;
-        self->IPF_ARGB_16161616                 = IPF_ARGB_16161616;
-        // EnumResultType
-        self->RT_STANDARD_TEXT                  = RT_STANDARD_TEXT;
-        self->RT_RAW_TEXT                       = RT_RAW_TEXT;
-        self->RT_CANDIDATE_TEXT                 = RT_CANDIDATE_TEXT;
-        self->RT_PARTIAL_TEXT                   = RT_PARTIAL_TEXT;
-        // EnumTerminatePhase
-        self->TP_REGION_PREDETECTED             = TP_REGION_PREDETECTED;
-        self->TP_IMAGE_PREPROCESSED             = TP_IMAGE_PREPROCESSED;
-        self->TP_IMAGE_BINARIZED                = TP_IMAGE_BINARIZED;
-        self->TP_BARCODE_LOCALIZED              = TP_BARCODE_LOCALIZED;
-        self->TP_BARCODE_TYPE_DETERMINED        = TP_BARCODE_TYPE_DETERMINED;
-        self->TP_BARCODE_RECOGNIZED             = TP_BARCODE_RECOGNIZED;
-        // EnumBarcodeColourMode
-        self->BICM_DARK_ON_LIGHT                = BICM_DARK_ON_LIGHT;
-        self->BICM_LIGHT_ON_DARK                = BICM_LIGHT_ON_DARK;
-        self->BICM_DARK_ON_DARK                 = BICM_DARK_ON_DARK;
-        self->BICM_LIGHT_ON_LIGHT               = BICM_LIGHT_ON_LIGHT;
-        self->BICM_DARK_LIGHT_MIXED             = BICM_DARK_LIGHT_MIXED;
-        self->BICM_DARK_ON_LIGHT_DARK_SURROUNDING = BICM_DARK_ON_LIGHT_DARK_SURROUNDING;
-        self->BICM_SKIP                         = BICM_SKIP;
-        // EnumBinarizationMode
-        self->BM_AUTO                           = BM_AUTO;
-        self->BM_LOCAL_BLOCK                    = BM_LOCAL_BLOCK;
-        self->BM_SKIP                           = BM_SKIP;
-        // EnumColourClusteringMode
-        self->CCM_AUTO                          = CCM_AUTO;
-        self->CCM_GENERAL_HSV                   = CCM_GENERAL_HSV;
-        self->CCM_SKIP                          = CCM_SKIP;
-        // EnumColourImageConvertMode
-        self->CICM_GENERAL                      = CICM_GENERAL;
-        self->CICM_SKIP                         = CICM_SKIP;
-        // EnumDPMCodeReadingMode
-        self->DPMCRM_AUTO                       = DPMCRM_AUTO;
-        self->DPMCRM_GENERAL                    = DPMCRM_GENERAL;
-        self->DPMCRM_SKIP                       = DPMCRM_SKIP;
-        // EnumRegionPredetectionMode
-        self->RPM_AUTO                          = RPM_AUTO;
-        self->RPM_GENERAL                       = RPM_GENERAL;
-        self->RPM_GENERAL_RGB_CONTRAST          = RPM_GENERAL_RGB_CONTRAST;
-        self->RPM_GENERAL_GRAY_CONTRAST         = RPM_GENERAL_GRAY_CONTRAST;
-        self->RPM_GENERAL_HSV_CONTRAST          = RPM_GENERAL_HSV_CONTRAST;
-        self->RPM_SKIP                          = RPM_SKIP;
-        // EnumTextFilterMode
-        self->TFM_AUTO                          = TFM_AUTO;
-        self->TFM_GENERAL_CONTOUR               = TFM_GENERAL_CONTOUR;
-        self->TFM_SKIP                          = TFM_SKIP;
-        // EnumConflictMode
-        self->CM_IGNORE                         = CM_IGNORE;
-        self->CM_OVERWRITE                      = CM_OVERWRITE;
-        // ImagePreprocessingMode
-        self->IPM_AUTO                          = IPM_AUTO;
-        self->IPM_GENERAL                       = IPM_GENERAL;
-        self->IPM_GRAY_EQUALIZE                 = IPM_GRAY_EQUALIZE;
-        self->IPM_GRAY_SMOOTH                   = IPM_GRAY_SMOOTH;
-        self->IPM_SHARPEN_SMOOTH                = IPM_SHARPEN_SMOOTH;
-        self->IPM_SKIP                          = IPM_SKIP;
-        // EnumIntermediateResultType
-        self->IRT_NO_RESULT                     = IRT_NO_RESULT;
-        self->IRT_ORIGINAL_IMAGE                = IRT_ORIGINAL_IMAGE;
-        self->IRT_COLOUR_CLUSTERED_IMAGE        = IRT_COLOUR_CLUSTERED_IMAGE;
-        self->IRT_COLOUR_CONVERTED_GRAYSCALE_IMAGE = IRT_COLOUR_CONVERTED_GRAYSCALE_IMAGE;
-        self->IRT_TRANSFORMED_GRAYSCALE_IMAGE   = IRT_TRANSFORMED_GRAYSCALE_IMAGE;
-        self->IRT_PREDETECTED_REGION            = IRT_PREDETECTED_REGION;
-        self->IRT_PREPROCESSED_IMAGE            = IRT_PREPROCESSED_IMAGE;
-        self->IRT_BINARIZED_IMAGE               = IRT_BINARIZED_IMAGE;
-        self->IRT_TEXT_ZONE                     = IRT_TEXT_ZONE;
-        self->IRT_CONTOUR                       = IRT_CONTOUR;
-        self->IRT_LINE_SEGMENT                  = IRT_LINE_SEGMENT;
-        self->IRT_FORM                          = IRT_FORM;
-        self->IRT_SEGMENTATION_BLOCK            = IRT_SEGMENTATION_BLOCK;
-        self->IRT_TYPED_BARCODE_ZONE            = IRT_TYPED_BARCODE_ZONE;
-        // EnumLocalizationMode
-        self->LM_AUTO                           = LM_AUTO;
-        self->LM_CONNECTED_BLOCKS               = LM_CONNECTED_BLOCKS;
-        self->LM_STATISTICS                     = LM_STATISTICS;
-        self->LM_LINES                          = LM_LINES;
-        self->LM_SCAN_DIRECTLY                  = LM_SCAN_DIRECTLY;
-        self->LM_STATISTICS_MARKS               = LM_STATISTICS_MARKS;
-        self->LM_SKIP                           = LM_SKIP;
-        // EnumQRCodeErrorCorrectionLevel
-        self->QRECL_ERROR_CORRECTION_H          = QRECL_ERROR_CORRECTION_H;
-        self->QRECL_ERROR_CORRECTION_L          = QRECL_ERROR_CORRECTION_L;
-        self->QRECL_ERROR_CORRECTION_M          = QRECL_ERROR_CORRECTION_M;
-        self->QRECL_ERROR_CORRECTION_Q          = QRECL_ERROR_CORRECTION_Q;
-        // EnumDeformationResistingMode
-        self->DRM_AUTO                          = DRM_AUTO;
-        self->DRM_GENERAL                       = DRM_GENERAL;
-        self->DRM_SKIP                          = DRM_SKIP;
-        // EnumTextAssistedCorrectionMode
-        self->TACM_AUTO                         = TACM_AUTO;
-        self->TACM_VERIFYING                    = TACM_VERIFYING;
-        self->TACM_VERIFYING_PATCHING           = TACM_VERIFYING_PATCHING;
-        self->TACM_SKIP                         = TACM_SKIP;
-        // EnumTextResultOrderMode
-        self->TROM_CONFIDENCE                   = TROM_CONFIDENCE;
-        self->TROM_POSITION                     = TROM_POSITION;
-        self->TROM_FORMAT                       = TROM_FORMAT;
-        self->TROM_SKIP                         = TROM_SKIP;
-        // EnumTextureDetectionMode
-        self->TDM_AUTO                          = TDM_AUTO;
-        self->TDM_GENERAL_WIDTH_CONCENTRATION   = TDM_GENERAL_WIDTH_CONCENTRATION;
-        self->TDM_SKIP                          = TDM_SKIP;
-        // EnumGrayscaleTransformationMode
-        self->GTM_INVERTED                      = GTM_INVERTED;
-        self->GTM_ORIGINAL                      = GTM_ORIGINAL;
-        self->GTM_SKIP                          = GTM_SKIP;
-        // EnumResultCoordinateType
-        self->RCT_PIXEL                         = RCT_PIXEL;
-        self->RCT_PERCENTAGE                    = RCT_PERCENTAGE;
-        // EnumIMResultDataType
-        self->IMRDT_IMAGE                       = IMRDT_IMAGE;
-        self->IMRDT_CONTOUR                     = IMRDT_CONTOUR;
-        self->IMRDT_LINESEGMENT                 = IMRDT_LINESEGMENT;
-        self->IMRDT_LOCALIZATIONRESULT          = IMRDT_LOCALIZATIONRESULT;
-        self->IMRDT_REGIONOFINTEREST            = IMRDT_REGIONOFINTEREST;
-        // EnumIntermediateResultSavingMode
-        self->IRSM_MEMORY                       = IRSM_MEMORY;
-        self->IRSM_FILESYSTEM                   = IRSM_FILESYSTEM;
-        self->IRSM_BOTH                         = IRSM_BOTH;
-
-        if (self->GRAY_SCALE_TRANSFORMATION_MODE == NULL)
-        {
-            Py_DECREF(self);
             return NULL;
         }
     }

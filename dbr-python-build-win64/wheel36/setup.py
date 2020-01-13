@@ -24,7 +24,7 @@ class BinaryDistribution(Distribution):
         return True
 
 
-data_info = {'dbr':['*.pyd', 'vcomp110.dll', 'DynamicPdfx64.dll', 'DynamsoftBarcodeReaderx64.dll', 'DynamsoftLicClientx64.dll']}
+data_info = {'dbr':['*.pyd', 'dbr_python.py','vcomp110.dll', 'DynamicPdfx64.dll', 'DynamsoftBarcodeReaderx64.dll', 'DynamsoftLicClientx64.dll']}
 
 setup(
     # This is the name of your project. The first time you publish this
@@ -46,7 +46,7 @@ setup(
     # For a discussion on single-sourcing the version across setup.py and the
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='7.2.2.3',  # Required
+    version='7.3',  # Required
 
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
