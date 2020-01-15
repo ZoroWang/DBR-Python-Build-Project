@@ -1,3 +1,6 @@
+# @Version : 7.3
+# @Author : Dynamsoft
+
 import sys
 import os
 import cv2
@@ -135,7 +138,7 @@ class EnumImagePixelFormat(IntEnum):
     IPF_RGB_161616 = 8
     IPF_ARGB_16161616 = 9
 
-class BarcodeColourMode(IntEnum):
+class EnumBarcodeColourMode(IntEnum):
     """ Describes the barcode colour mode. """
 
     BICM_DARK_ON_LIGHT = 0x01
@@ -207,7 +210,7 @@ class EnumIntermediateResultType(IntEnum):
     IRT_SEGMENTATION_BLOCK = 0x800
     IRT_TYPED_BARCODE_ZONE = 0x1000
 
-class LocalizationMode(IntEnum):
+class EnumLocalizationMode(IntEnum):
     """ Describes the localization mode. """
 
     LM_AUTO = 0x01
