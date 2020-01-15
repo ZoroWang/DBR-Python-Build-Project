@@ -1453,6 +1453,18 @@ static PyObject * CreatePyIntermediateResults(IntermediateResultArray * pResults
         Py_DECREF(pyBCMIndex);
         Py_DECREF(pyBCMIndexKey);
 
+		PyObject * pyDeformationResistingMode = Py_BuildValue("i", pResults->results[i]->deformationResistingMode);
+		PyObject * pyDeformationResistingModeKey = Py_BuildValue("s", "DeformationResistingMode");
+		PyDict_SetItem(pyIntermediateResult, pyDeformationResistingModeKey, pyDeformationResistingMode);
+		Py_DECREF(pyDeformationResistingMode);
+		Py_DECREF(pyDeformationResistingModeKey);
+
+		PyObject * pyDRMIndex = Py_BuildValue("i", pResults->results[i]->bcmIndex);
+		PyObject * pyDRMIndexKey = Py_BuildValue("s", "DRMIndex");
+		PyDict_SetItem(pyIntermediateResult, pyDRMIndexKey, pyDRMIndex);
+		Py_DECREF(pyDRMIndex);
+		Py_DECREF(pyDRMIndexKey);
+
         PyObject * pyDPMCodeReadingMode      = Py_BuildValue("i", pResults->results[i]->dpmCodeReadingMode);
         PyObject * pyDPMCodeReadingModeKey   = Py_BuildValue("s", "DPMCodeReadingMode");
         PyDict_SetItem(pyIntermediateResult, pyDPMCodeReadingModeKey, pyDPMCodeReadingMode);
