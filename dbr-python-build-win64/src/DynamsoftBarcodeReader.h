@@ -255,7 +255,7 @@ typedef enum
 	/**Codabar */
 	BF_CODABAR = 0x8,
 	
-	/**ITF */
+	/**Interleaved 2 of 5 */
 	BF_ITF = 0x10,
 	
 	/**EAN-13 */

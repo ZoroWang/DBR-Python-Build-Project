@@ -15,7 +15,7 @@ import sys
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 class BinaryDistribution(Distribution):
@@ -24,7 +24,8 @@ class BinaryDistribution(Distribution):
         return True
 
 
-data_info = {'dbr':['*.pyd', 'dbr_python.py','vcomp110.dll', 'DynamicPdfx64.dll', 'DynamsoftBarcodeReaderx64.dll', 'DynamsoftLicClientx64.dll']}
+data_info = {'dbr':['*.pyd', 'dbr_python.py','vcomp110.dll', 'DynamicPdfx64.dll', 'DynamsoftBarcodeReaderx64.dll', 'DynamsoftLicClientx64.dll', 'Classification.dll', 'gflags.dll', 'glog.dll', 'libopenblas.dll', 'legal.txt', \
+'CaffeModel/Add_all_iter_70000.caffemodel', 'CaffeModel/labels.txt', 'CaffeModel/labels_alpha.txt', 'CaffeModel/lenet.prototxt', 'CaffeModel/lenet_alpha.prototxt', 'CaffeModel/number_iter_20000.caffemodel']}
 
 setup(
     # This is the name of your project. The first time you publish this
@@ -73,7 +74,7 @@ setup(
     #
     # This field corresponds to the "Description-Content-Type" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#description-content-type-optional
-    # long_description_content_type='text/markdown',  # Optional (see note above)
+    long_description_content_type='text/markdown',  # Optional (see note above)
 
     # This should be a valid link to your project's main homepage.
     #
