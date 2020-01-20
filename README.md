@@ -307,7 +307,6 @@
 		- height : The height of the sampling image.
 
 
-
 - **FrameDecodingParameters** : Defines a class to configure the frame decoding Parameters.
 	- ***Attributes*** :
 
@@ -325,7 +324,6 @@
 		- threshold                     : The threshold used for filtering frames.
 		- fps                           : The frequency of calling AppendFrame() per second.
 		- auto_filter                   : Sets whether to filter frames automatically.
-
 
 
 - **PublicRuntimeSetting** : Defines a struct to configure the barcode reading runtime settings. These settings control the barcode recognition process such as which barcode types to decode.
