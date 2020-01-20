@@ -8,11 +8,28 @@
 
 *Dynamsoft Barcode Reader - Python Edition contains all the features of Dynamsoft Barcode Reader. It brings convenience for customers whos develop by Python. What's more, We store some examples in [Github](https://github.com/dynamsoft-dbr/python-barcode) to help you how to use it. If you have any problems, please contact us, we will provide technical support. *
 
+## Table Of Contents
+- [Contact US](#Contact-US)
+- [Version](#Version)
+- [Supported Platforms](#Supported-Platforms)
+- [Installation](#Installation)
+- [Supported Symbologies](#Supported-Symbologies)
+- [New Features](#New-Features)
+- [Improved](#Improved)
+- [Interfaces](#Interfaces)
+	- [Enum Interfaces](#Enum-Interfaces)
+	- [Struct Interfaces](#Struct-Interfaces)
+	- [Exception Class Interface](#Exception-Class-Interface)
+	- [Main Class Interface](#Main-Class-Interface)
+- [Others](#Others)
+	- [Code Snippet](#Code-Snippet)
+	- [Mode Argument List](#Mode-Argument-List)
+
 ### Contact US
 <support@dynamsoft.com>
 
 ### Version
-** 7.3 **
+**7.3**
 >Dynamsoft Barcode Reader Python SDK 7.3 is a milestone release, which means that dbr-python is a complete product.
 
 ### Supported Platforms
@@ -69,56 +86,229 @@
 
 >3. Added new samples to help you get started with our Python SDK.
 
+>4. Added a new barcode type Postal codes including USPS Intelligent Mail, Postnet, Planet, Australia Post barcode, RM4SCC.
+
+>5. Added a new localization mode LM_STATISTICS_POSTAL_CODE in the struct PublicRuntimeSettings -> LocalizationModes to recognize Postal codes.
+
+>6. Implemented the feature of recognizing distorted QR barcode. It can be enabled by turning on the struct PublicRuntimeSettings -> deformation_resisting_modes.
+
+>7. Implemented the feature of complementing missing parts of QR Code & DataMatrix barcodes. It can be enabled by turning on the struct PublicRuntimeSettings -> barcode_complement_modes.
+
+>8. Added a new setting ScaleUpModes to set the scale-up mode for linear barcodes with small module size. It can be enabled by turning on the struct PublicRuntimeSettings -> scale_up_modes.
+
+>9. Added the capability to obtain accompanying texts at the top or bottom of a linear barcode. It can be enabled by turning on the struct PublicRuntimeSettings -> accompanying_text_recognition_modes.
+
+### Improved
+>1. Improved the decoding accuracy for DataMatrix that has a narrow quiet zone.
+
+>2. Improved the decoding accuracy for 1D barcode that has a small module size.
+
 ### Interfaces
 
 #### Enum Interfaces
 
-```
-- EnumAccompanyingTextRecognitionMode : Describes the accompanying text recognition mode.
-- EnumBarcodeComplementMode           : Describes the barcode complement mode.
-- EnumBarcodeColourMode               : Describes the barcode colour mode.
-- EnumBarcodeFormat                   : Describes the barcode types in BarcodeFormat group 1.
-- EnumBarcodeFormat_2                 : Describes the barcode types in BarcodeFormat group 2.
-- EnumBinarizationMode                : Describes the binarization mode.
-- EnumColourClusteringMode            : Describes the colour clustering mode.
-- EnumColourConversionMode            : Describes the colour conversion mode.
-- EnumConflictMode                    : Describes the conflict mode.
-- EnumDeformationResistingMode        : Describes the deformation resisting mode.
-- EnumDPMCodeReadingMode              : Describes the DPM code reading mode.
-- EnumErrorCode                       : Describes error code
-- EnumGrayscaleTransformationMode     : Describes the grayscale transformation mode.
-- EnumImagePixelFormat                : Describes the image pixel format.
-- EnumImagePreprocessingMode          : Describes the image preprocessing mode.
-- EnumIMResultDataType                : Describes the intermediate result data type.
-- EnumIntermediateResultSavingMode    : Describes the intermediate result saving mode.
-- EnumIntermediateResultType          : Describes the intermediate result type.
-- EnumLocalizationMode                : Describes the localization mode.
-- EnumQRCodeErrorCorrectionLevel      : Describes the QR Code error correction level.
-- EnumRegionPredetectionMode          : Describes the region predetection mode.
-- EnumResultCoordinateType            : Describes the result coordinate type.
-- EnumResultType                      : Describes the extended result type.
-- EnumScaleUpMode                     : Describes the scale up mode.
-- EnumTerminatePhase                  : Describes the terminate phase.
-- EnumTextAssistedCorrectionMode      : Describes the text assisted correction mode.
-- EnumTextFilterMode                  : Describes the text filter mode.
-- EnumTextResultOrderMode             : Describes the text result order mode.
-- EnumTextureDetectionMode            : Describes the texture detection mode.
-```
+
+- **EnumAccompanyingTextRecognitionMode** : Describes the accompanying text recognition mode.
+	- ATRM_GENERAL : Recognizes accompanying texts using the general algorithm.
+	- ATRM_SKIP : Skips the accompanying text recognition.
+- **EnumBarcodeComplementMode** : Describes the barcode complement mode.
+	- BCM_AUTO : Not supported yet.
+	- BCM_GENERAL : Complements the barcode using the general algorithm.
+	- BCM_SKIP : Skips the barcode complement.
+- **EnumBarcodeColourMode** : Describes the barcode colour mode.
+	- BICM_DARK_ON_LIGHT : Dark items on a light background. 
+	- BICM_LIGHT_ON_DARK : Light items on a dark background. Not supported yet.
+	- BICM_DARK_ON_DARK : Dark items on a dark background. Not supported yet.
+	- BICM_LIGHT_ON_LIGHT : Light items on a light background. Not supported yet.
+	- BICM_DARK_LIGHT_MIXED : The background is mixed by dark and light. Not supported yet.
+	- BICM_DARK_ON_LIGHT_DARK_SURROUNDING : Dark item on a light background surrounded by dark.
+	- BICM_SKIP : Skips the barcode colour operation.
+- **EnumBarcodeFormat** : Describes the barcode types in BarcodeFormat group 1.
+	- BF_ALL : All supported formats in BarcodeFormat group 1
+	- BF_ONED : Combined value of BF_CODABAR, BF_CODE_128, BF_CODE_39, BF_CODE_39_Extended, BF_CODE_93, BF_EAN_13, BF_EAN_8, INDUSTRIAL_25, BF_ITF, BF_UPC_A, BF_UPC_E
+	- BF_GS1_DATABAR : Combined value of BF_GS1_DATABAR_OMNIDIRECTIONAL, BF_GS1_DATABAR_TRUNCATED, BF_GS1_DATABAR_STACKED, BF_GS1_DATABAR_STACKED_OMNIDIRECTIONAL, BF_GS1_DATABAR_EXPANDED, BF_GS1_DATABAR_EXPANDED_STACKED, BF_GS1_DATABAR_LIMITED
+	- BF_CODE_39 : Code 39
+	- BF_CODE_128 : Code 128
+	- BF_CODE_93 : Code 93
+	- BF_CODABAR : Codabar
+	- BF_ITF : Interleaved 2 of 5
+	- BF_EAN_13 : EAN-13
+	- BF_EAN_8 : EAN-8
+	- BF_UPC_A : UPC-A
+	- BF_UPC_E : UPC-E
+	- BF_INDUSTRIAL_25 : Industrial 2 of 5
+	- BF_CODE_39_EXTENDED : CODE39 Extended
+	- BF_GS1_DATABAR_OMNIDIRECTIONAL : GS1 Databar Omnidirectional
+	- BF_GS1_DATABAR_TRUNCATED : GS1 Databar Truncated
+	- BF_GS1_DATABAR_STACKED : GS1 Databar Stacked
+	- BF_GS1_DATABAR_STACKED_OMNIDIRECTIONAL : GS1 Databar Stacked Omnidirectional
+	- BF_GS1_DATABAR_EXPANDED : GS1 Databar Expanded
+	- BF_GS1_DATABAR_EXPANDED_STACKED : GS1 Databar Expaned Stacked
+	- BF_GS1_DATABAR_LIMITED : GS1 Databar Limited
+	- BF_PATCHCODE : Patch code
+	- BF_PDF417 : PDF417
+	- BF_QR_CODE : QRCode
+	- BF_DATAMATRIX : DataMatrix
+	- BF_AZTEC : AZTEC
+	- BF_MAXICODE : MAXICODE
+	- BF_MICRO_QR : Micro QR Code
+	- BF_MICRO_PDF417 : Micro PDF417
+	- BF_GS1_COMPOSITE : GS1 Composite Code
+	- BF_NULL : No barcode format in BarcodeFormat group 1
+- **EnumBarcodeFormat_2** : Describes the barcode types in BarcodeFormat group 2.
+	- BF2_NULL : No barcode format in BarcodeFormat group 2
+	- BF2_POSTALCODE : Combined value of BF2_USPSINTELLIGENTMAIL, BF2_POSTNET, BF2_PLANET, BF2_AUSTRALIANPOST, BF2_RM4SCC.
+	- BF2_NONSTANDARD_BARCODE : Nonstandard barcode
+	- BF2_USPSINTELLIGENTMAIL : USPS Intelligent Mail
+	- BF2_POSTNET : Postnet
+	- BF2_PLANET : Planet
+	- BF2_AUSTRALIANPOST : Australian Post
+	- BF2_RM4SCC : Royal Mail 4-State Customer Barcode
+- **EnumBinarizationMode** : Describes the binarization mode.
+	- BM_AUTO : Not supported yet.
+	- BM_LOCAL_BLOCK : Binarizes the image based on the local block.
+	- BM_SKIP : Skips the binarization.
+- **EnumColourClusteringMode** : Describes the colour clustering mode.
+	- CCM_AUTO : Not supported yet.
+	- CCM_GENERAL_HSV : Clusters colours using the general algorithm based on HSV.
+	- CCM_SKIP : Skips the colour clustering.
+- **EnumColourConversionMode** : Describes the colour conversion mode.
+	- CICM_GENERAL : Converts a colour image to a grayscale image using the general algorithm.
+	- CICM_SKIP : Skips the colour conversion.
+- **EnumConflictMode** : Describes the conflict mode.
+	- CM_IGNORE : Ignores new settings and inherits the previous settings.
+	- CM_OVERWRITE : Overwrites the old settings with new settings.
+- **EnumDeformationResistingMode** : Describes the deformation resisting mode.
+	- DRM_AUTO : Not supported yet.
+	- DRM_GENERAL : Resists deformation using the general algorithm.
+	- DRM_SKIP : Skips deformation resisting.
+- **EnumDPMCodeReadingMode** : Describes the DPM code reading mode.
+	- DPMCRM_AUTO : Not supported yet.
+	- DPMCRM_GENERAL : Reads DPM code using the general algorithm.
+	- DPMCRM_SKIP : Skips DPM code reading.
+- **EnumErrorCode** : Describes error code
+- **EnumGrayscaleTransformationMode** : Describes the grayscale transformation mode.
+	- GTM_INVERTED : Transforms to inverted grayscale. Recommended for light on dark images.
+	- GTM_ORIGINAL : Keeps the original grayscale. Recommended for dark on light images.
+	- GTM_SKIP : Skips grayscale transformation.
+- **EnumImagePixelFormat** : Describes the image pixel format.
+	- IPF_BINARY : 0:Black, 1:White
+	- IPF_BINARYINVERTED : 0:White, 1:Black
+	- IPF_GRAYSCALED : 8bit gray
+	- IPF_NV21 : NV21
+	- IPF_RGB_565 : 16bit
+	- IPF_RGB_555 : 16bit
+	- IPF_RGB_888 : 24bit
+	- IPF_ARGB_8888 : 32bit
+	- IPF_RGB_161616 : 48bit
+	- IPF_ARGB_16161616 : 64bit
+- **EnumImagePreprocessingMode** : Describes the image preprocessing mode.
+	- IPM_AUTO : Not supported yet.
+	- IPM_GENERAL : Takes the unpreprocessed image for following operations.
+	- IPM_GRAY_EQUALIZE : Preprocesses the image using the gray equalization algorithm.
+	- IPM_GRAY_SMOOTH : Preprocesses the image using the gray smoothing algorithm.
+	- IPM_SHARPEN_SMOOTH : Preprocesses the image using the sharpening and smoothing algorithm.
+	- IPM_SKIP : Skips image preprocessing.
+- **EnumIMResultDataType** : Describes the intermediate result data type.
+	- IMRDT_IMAGE : Specifies the ImageData
+	- IMRDT_CONTOUR : Specifies the Contour
+	- IMRDT_LINESEGMENT : Specifies the LineSegment
+	- IMRDT_LOCALIZATIONRESULT : Specifies the LocalizationResult
+	- IMRDT_REGIONOFINTEREST : Specifies the RegionOfInterest
+- **EnumIntermediateResultSavingMode** : Describes the intermediate result saving mode.
+	- IRSM_MEMORY : Saves intermediate results in memory.
+	- IRSM_FILESYSTEM : Saves intermediate results in file system.
+	- IRSM_BOTH : Saves intermediate results in both memory and file system.
+- **EnumIntermediateResultType** : Describes the intermediate result type.
+	- IRT_NO_RESULT : No intermediate result
+	- IRT_ORIGINAL_IMAGE : Original image
+	- IRT_COLOUR_CLUSTERED_IMAGE : Colour clustered image. Not supported yet.
+	- IRT_COLOUR_CONVERTED_GRAYSCALE_IMAGE : Colour image converted to grayscale
+	- IRT_TRANSFORMED_GRAYSCALE_IMAGE : Transformed grayscale image
+	- IRT_PREDETECTED_REGION : Predetected region
+	- IRT_PREPROCESSED_IMAGE : Preprocessed image
+	- IRT_BINARIZED_IMAGE : Binarized image
+	- IRT_TEXT_ZONE : Text zone
+	- IRT_CONTOUR : Contour
+	- IRT_LINE_SEGMENT : Line segment
+	- IRT_FORM : Form. Not supported yet.
+	- IRT_SEGMENTATION_BLOCK : Segmentation block. Not supported yet.
+	- IRT_TYPED_BARCODE_ZONE : Typed barcode zone
+- **EnumLocalizationMode** : Describes the localization mode.
+	- LM_AUTO : Not supported yet.
+	- LM_CONNECTED_BLOCKS : Localizes barcodes by searching for connected blocks. This algorithm usually gives best result and it is recommended to set ConnectedBlocks to the highest priority.
+	- LM_STATISTICS : Localizes barcodes by groups of contiguous black-white regions. This is optimized for QRCode and DataMatrix.
+	- LM_LINES : Localizes barcodes by searching for groups of lines. This is optimized for 1D and PDF417 barcodes.
+	- LM_SCAN_DIRECTLY : Localizes barcodes quickly. This mode is recommended in interactive scenario.
+	- LM_STATISTICS_MARKS : Localizes barcodes by groups of marks.This is optimized for DPM codes.
+	- LM_STATISTICS_POSTAL_CODE : Localizes barcodes by groups of connected blocks and lines.This is optimized for postal codes.
+	- LM_SKIP : Skips localization.
+- **EnumQRCodeErrorCorrectionLevel** : Describes the QR Code error correction level.
+	- QRECL_ERROR_CORRECTION_H : Error Correction Level H (high)
+	- QRECL_ERROR_CORRECTION_L : Error Correction Level L (low)
+	- QRECL_ERROR_CORRECTION_M : Error Correction Level M (medium-low)
+	- QRECL_ERROR_CORRECTION_Q : Error Correction Level Q (medium-high)
+- **EnumRegionPredetectionMode** : Describes the region predetection mode.
+	- RPM_AUTO : Lets the library choose an algorithm automatically to detect region.
+	- RPM_GENERAL : Takes the whole image as a region.
+	- RPM_GENERAL_RGB_CONTRAST : Detects region using the general algorithm based on RGB colour contrast.
+	- RPM_GENERAL_GRAY_CONTRAST : Detects region using the general algorithm based on gray contrast.
+	- RPM_GENERAL_HSV_CONTRAST : Detects region using the general algorithm based on HSV colour contrast.
+	- RPM_SKIP : Skips region detection.
+- **EnumResultCoordinateType** : Describes the result coordinate type.
+	- RCT_PIXEL : Returns the coordinate in pixel value.
+	- RCT_PERCENTAGE : Returns the coordinate as a percentage.
+- **EnumResultType** : Describes the extended result type.
+	- RT_STANDARD_TEXT : Specifies the standard text. This means the barcode value.
+	- RT_RAW_TEXT : Specifies the raw text. This means the text that includes start/stop characters, check digits, etc.
+	- RT_CANDIDATE_TEXT : Specifies all the candidate text. This means all the standard text results decoded from the barcode.
+	- RT_PARTIAL_TEXT : Specifies the partial text. This means part of the text result decoded from the barcode.
+- **EnumScaleUpMode** : Describes the scale up mode.
+	- SUM_AUTO : The library chooses an interpolation method automatically to scale up.
+	- SUM_LINEAR_INTERPOLATION : Scales up using the linear interpolation method.
+	- SUM_NEAREST_NEIGHBOUR_INTERPOLATION : Scales up using the nearest-neighbour interpolation method.
+	- SUM_SKIP : Skip the scale-up process.
+- **EnumTerminatePhase** : Describes the terminate phase.
+	- TP_REGION_PREDETECTED : Exits the barcode reading algorithm after the region predetection is done.
+	- TP_IMAGE_PREPROCESSED : Exits the barcode reading algorithm after the region predetection and image pre-processing is done.
+	- TP_IMAGE_BINARIZED : Exits the barcode reading algorithm after the region predetection, image pre-processing, and image binarization are done.
+	- TP_BARCODE_LOCALIZED : Exits the barcode reading algorithm after the region predetection, image pre-processing, image binarization, and barcode localization are done.
+	- TP_BARCODE_TYPE_DETERMINED : Exits the barcode reading algorithm after the region predetection, image pre-processing, image binarization, barcode localization, and barcode type determining are done.
+	- TP_BARCODE_RECOGNIZED : Exits the barcode reading algorithm after the region predetection, image pre-processing, image binarization, barcode localization, barcode type determining, and barcode recognition are done.
+- **EnumTextAssistedCorrectionMode** : Describes the text assisted correction mode.
+	- TACM_AUTO : Not supported yet.
+	- TACM_VERIFYING : Uses the accompanying text to verify the decoded barcode result.
+	- TACM_VERIFYING_PATCHING : Uses the accompanying text to verify and patch the decoded barcode result.
+	- TACM_SKIP : Skips the text assisted correction.
+- **EnumTextFilterMode** : Describes the text filter mode.
+	- TFM_AUTO : Not supported yet.
+	- TFM_GENERAL_CONTOUR : Filters text using the general algorithm based on contour.
+	- TFM_SKIP : Skips text filtering.
+- **EnumTextResultOrderMode** : Describes the text result order mode.
+	- TROM_CONFIDENCE : Returns the text results in descending order by confidence.
+	- TROM_POSITION : Returns the text results in position order, from top to bottom, then left to right.
+	- TROM_FORMAT : Returns the text results in alphabetical and numerical order by barcode format string.
+	- TROM_SKIP : Skips the result ordering operation.
+- **EnumTextureDetectionMode** : Describes the texture detection mode.
+	- TDM_AUTO : Not supported yet.
+	- TDM_GENERAL_WIDTH_CONCENTRATION : Detects texture using the general algorithm.
+	- TDM_SKIP : Skips texture detection.
+
 
 #### Struct Interfaces
 
 - **SamplingImageData** : Stores the sampling image data.
 	- ***Attributes*** :
-	```
+
 		- bytes  : The sampling image data in a byte array.
 		- width  : The width of the sampling image.
 		- height : The height of the sampling image.
-	```
+
 
 
 - **FrameDecodingParameters** : Defines a class to configure the frame decoding Parameters.
 	- ***Attributes*** :
-	```
+
 		- max_queue_length              : The maximum number of frames waiting for decoding.
 		- max_result_queue_length       : The maximum number of frames waiting results (text result/localization result) will be kept for further reference.
 		- width                         : The width of the frame image in pixels.
@@ -133,12 +323,12 @@
 		- threshold                     : The threshold used for filtering frames.
 		- fps                           : The frequency of calling AppendFrame() per second.
 		- auto_filter                   : Sets whether to filter frames automatically.
-	```
+
 
 
 - **PublicRuntimeSetting** : Defines a struct to configure the barcode reading runtime settings. These settings control the barcode recognition process such as which barcode types to decode.
 	- ***Attributes*** :
-	```
+
 		- terminate_phase : Sets the phase to stop the barcode reading algorithm.
 		- timeout         : Sets the maximum amount of time (in milliseconds) that should be spent searching for a barcode per page. It does not include the time taken to load/decode an image (TIFF, PNG, etc.) from disk into memory.
 		- max_algorithm_thread_count : Sets the number of threads the image processing algorithm will use to decode barcodes.
@@ -176,60 +366,60 @@
 		- region_measured_by_percentage : Sets whether or not to use percentage to measure the region size.
 		- min_barcode_text_length       : Sets the range of barcode text length for barcodes search.
 		- min_result_confidence         : The minimum confidence of the result.
-	```
+
 
 - **OnedDetailedResult** : Stores the OneD code details.
 	- ***Attributes*** :
-	```
+
 		- module_size       : The barcode module size (the minimum bar width in pixel)
 		- start_chars_bytes : The start chars in a byte array
 		- stop_chars_bytes  : The stop chars in a byte array
 		- check_digit_bytes : The check digit chars in a byte array
-	```
+
 
 - **QRCodeDetailedResult** : Stores the QRCode details.
 	- ***Attributes*** :
-	```
+
 		- module_size            : The barcode module size (the minimum bar width in pixel)
 		- rows                   : The row count of the barcode
 		- columns                : The column count of the barcode
 		- error_correction_level : The error correction level of the barcode
 		- versions               : The version of the QR Code
 		- model                  : Number of the models
-	```
+
 
 - **DataMatrixDetailedResult** : Stores the DataMatrix details.
 	- ***Attributes*** :
-	```
+
 		- module_size         : The barcode module size (the minimum bar width in pixel)
 		- rows                : The row count of the barcode
 		- columns             : The column count of the barcode
 		- data_region_rows    : The data region row count of the barcode
 		- data_region_columns : The data region column count of the barcode
 		- data_region_number  : The data region count
-	```
+
 
 - **PDFDetailedResult** : Stores the PDF details.
 	- ***Attributes*** :
-	```
+
 		- module_size            : The barcode module size (the minimum bar width in pixel)
 		- rows                   : The row count of the barcode
 		- columns                : The column count of the barcode
 		- error_correction_level : The error correction level of the barcode
-	```
+
 
 - **AztecDetailedResult** : Stores the Aztec details.
 	- ***Attributes*** :
-	```
+
 		- module_size  : The barcode module size (the minimum bar width in pixel)
 		- rows         : The row count of the barcode
 		- columns      : The column count of the barcode
 		- layer_number : A negative number (-1, -2, -3, -4) specifies a compact Aztec code. A positive number (1, 2, .. 32) specifies a normal (full-rang) Aztec code.
-	```
+
 
 - **ExtendedResult** : Stores the extended result.
 	- ***Attributes*** :
-	```
+
 		- result_type             : Extended result type
 		- barcode_format          : Barcode type in BarcodeFormat group 1
 		- barcode_format_string   : Barcode type in BarcodeFormat group 1 as string
@@ -242,11 +432,11 @@
 		- detailed_result         : One of the following: OnedDetailedResult, PDFDetailedResult, DataMatrixDetailedResult, AztecDetailedResult, QRCodeDetailedResult
 		- sampling_image          : The sampling image info
 		- clarity                 : The clarity of the barcode zone in percentage.
-	```
+
 
 - **LocalizationResult** : Stores the localization result.
 	- ***Attributes*** :
-	```
+
 		- terminate_phase         : The terminate phase of localization result
 		- barcode_format          : Barcode type in BarcodeFormat group 1
 		- barcode_format_string   : Barcode type in BarcodeFormat group 1 as string
@@ -262,11 +452,11 @@
 		- result_coordinate_type  : The coordinate type
 		- accompanying_text_bytes : The accompanying text content in a byte array
 		- confidence              : The confidence of the localization result
-	```
+
 
 - **TextResult** : Stores the text result.
 	- ***Attributes*** :
-	```
+
 		- barcode_format          : Barcode type in BarcodeFormat group 1
 		- barcode_format_string   : Barcode type in BarcodeFormat group 1 as string
 		- barcode_format_2        : Barcode type in BarcodeFormat group 2
@@ -276,51 +466,51 @@
 		- localization_result     : The corresponding localization result
 		- detailed_result         : One of the following: OnedDetailedResult, PDFDetailedResult, DataMatrixDetailedResult, AztecDetailedResult, QRCodeDetailedResult
 		- extended_results        : The extended result list
-	```
+
 
 - **Point** : Stores an x- and y-coordinate pair in two-dimensional space.
 	- ***Attributes*** :
-	```
+
 		- x : The X coordinate of the point
 		- y : The Y coordinate of the point
-	```
+
 
 - **ImageData** : Stores the image data.
 	- ***Attributes*** :
-	```
+
 		- bytes              : The image data content in a byte array
 		- width              : The width of the image in pixels
 		- height             : The height of the image in pixels
 		- stride             : The image data content in a byte array
 		- image_pixel_format : The image data content in a byte array
-	```
+
 
 - **Contour** : Stores the contour.
 	- ***Attributes*** :
-	```
+
 		- points : The points list
-	```
+
 
 - **LineSegment** : Stores line segment data.
 	- ***Attributes*** :
-	```
+
 		- start_point                   : The start point of the line segment
 		- end_point                     : The end point of the line segment
 		- lines_confidence_coefficients : The end point of the line segment
-	```
+
 
 - **RegionOfInterest** : Stores the region of interest.
 	- ***Attributes*** :
-	```
+
 		- roi_id : The ID generated by the SDK
 		- point  : The left top point of the region
 		- width  : The width of the region
 		- height : The height of the region
-	```
+
 
 - **IntermediateResult** : Stores the intermediate result.
 	- ***Attributes*** :
-	```
+
 		- data_type                     : The data type of the intermediate result
 		- results                       : One of the following types: List of class Contour, List of class ImageData, List of class LineSegment, List of class LocalizationResult, List of class RegionOfInterest
 		- result_type                   : Intermediate result type
@@ -350,7 +540,7 @@
 		- roi_id                        : The ID of the ROI (Region Of Interest) generated by the SDK. -1 means the original image.
 		- scale_down_ratio              : The scale down ratio
 		- frame_id                      : The ID of the operated frame
-	```
+
 
 #### Exception Class Interface
 - **BarcodeReaderError**
@@ -358,132 +548,157 @@
 #### Main Class Interface
 - **BarcodeReader** : Defines a class that provides functions for decoding barcodes in images. This is the main interface for recognizing barcodes.
 	- ***Attributes*** :
-	```
+
 		- version     : The Dynamsoft Barcode Reader - Python Edition version
 		- dbr_version : The Dynamsoft Barcode Reader version
-	```
+
 	- ***Methods*** :
-	```
+
 		- get_error_string(error_code)
-			@description Get the detailed error message by error code
-			@param  error_code   <int> : Error code
-			@return error_string <str> : The detailed error message
+			- @description Gets the detailed error message by error code
+			- @param  error_code   <int> : Error code
+			- @return error_string <str> : The detailed error message
+
 		- init_license(dbr_license)
-			@description Reads product key and activates the SDK.
-			@param  dbr_license <str>   : The product keys
-			@return error       <tuple> : error_code = error[0], error_message = error[1].
+			- @description Reads product key and activates the SDK.
+			- @param  dbr_license <str>   : The product keys
+			- @return error       <tuple> : error_code = error[0], error_message = error[1].
+
 		- init_license_from_server(license_server, license_key)
-			@description Initializes barcode reader license and connects to the specified server for online verification.
-			@param  license_server <str>   : The name/IP of the license server.
-			@param  license_key    <str>   : The license key.
-			@return error          <tuple> : error_code = error[0], error_message = error[1].
+			- @description Initializes barcode reader license and connects to the specified server for online verification.
+			- @param  license_server <str>   : The name/IP of the license server.
+			- @param  license_key    <str>   : The license key.
+			- @return error          <tuple> : error_code = error[0], error_message = error[1].
+
 		- init_license_from_license_content(license_key, license_content)
-			@description Initializes barcode reader license from the license content on the client machine for offline verification.
-			@param  license_key     <str>   : The license key.
-			@param  license_content <str>   : An encrypted string representing the license content (quota, expiration date, barcode type, etc.) obtained from the method output_license_to_string().
-			@return error           <tuple> : error_code = error[0], error_message = error[1].
+			- @description Initializes barcode reader license from the license content on the client machine for offline verification.
+			- @param  license_key     <str>   : The license key.
+			- @param  license_content <str>   : An encrypted string representing the license content (quota, expiration date, barcode type, etc.) obtained from the method output_license_to_string().
+			- @return error           <tuple> : error_code = error[0], error_message = error[1].
+
 		- output_license_to_string()
-			@description Outputs the license content as an encrypted string from the license server to be used for offline license verification.
-			@return license_string  <str> : An encrypted string which stores the content of license.
-			@exception BarcodeReaderError
+			- @description Outputs the license content as an encrypted string from the license server to be used for offline license verification.
+			- @return license_string  <str> : An encrypted string which stores the content of license.
+			- @exception BarcodeReaderError
+
 		- get_runtime_settings()
-			@description Get current runtime settings.
-			@return runtime_settings <class PublicRuntimeSetting> : The PublicRuntimeSetting object of current runtime settings.
+			- @description Gets current runtime settings.
+			- @return runtime_settings <class PublicRuntimeSetting> : The PublicRuntimeSetting object of current runtime settings.
+
 		- update_runtime_settings(settings)
-			@description Update runtime settings with a PublicRuntimeSetting object.
-			@param settings <class PublicRuntimeSetting> : a PublicRuntimeSetting object.
-			@exception BarcodeReaderError
+			- @description Update runtime settings with a PublicRuntimeSetting object.
+			- @param settings <class PublicRuntimeSetting> : a PublicRuntimeSetting object.
+			- @exception BarcodeReaderError
+
 		- reset_runtime_settings(settings)
-			@description Resets all parameters to default values.
+			- @description Resets all parameters to default values.
+
 		- set_mode_argument(modes_name, index, argument_name, argument_value)
-			@description Sets the optional argument for a specified mode in Modes(Mode) parameters.
-			@param  modes_name     <str>   : The modes(mode) parameter name to set argument.
-			@param  index          <int>   : The array index of modes parameter to indicate a specific mode.
-			@param  argument_name  <str>   : The name of the argument to set.
-			@param  argument_value <str>   : The value of the argument to set.
-			@return error          <tuple> : error_code = error[0], error_message = error[1].
+			- @description Sets the optional argument for a specified mode in Modes(Mode) parameters. Check [Mode Argument List](#Mode-Argument-List) for available argument settings.
+			- @param  modes_name     <str>   : The modes(mode) parameter name to set argument.
+			- @param  index          <int>   : The array index of modes parameter to indicate a specific mode.
+			- @param  argument_name  <str>   : The name of the argument to set.
+			- @param  argument_value <str>   : The value of the argument to set.
+			- @return error          <tuple> : error_code = error[0], error_message = error[1].
+
 		- get_mode_argument(modes_name, index, argument_name)
-			@description Gets the optional argument for a specified mode in Modes(Mode) parameters.
-			@param  modes_name      <str> : The modes(mode) parameter name to get argument.
-			@param  index           <int> : The array index of modes parameter to indicate a specific mode.
-			@param  argument_name   <str> : The name of the argument to get.
-			@return argument_value  <str> : The value of the argument to get.
-			@exception BarcodeReaderError
+			- @description Gets the optional argument for a specified mode in Modes(Mode) parameters.Check [Mode Argument List](#Mode-Argument-List) for available argument settings.
+			- @param  modes_name      <str> : The modes(mode) parameter name to get argument.
+			- @param  index           <int> : The array index of modes parameter to indicate a specific mode.
+			- @param  argument_name   <str> : The name of the argument to get.
+			- @return argument_value  <str> : The value of the argument to get.
+			- @exception BarcodeReaderError
+
 		- init_runtime_settings_with_string(json_string, conflict_mode=EnumConflictMode.CM_OVERWRITE)
-			@description Initializes runtime settings with the parameters obtained from a JSON string.
-			@param  json_string     <str> : A JSON string that represents the content of the settings.
-			@param  conflict_mode   <EnumConflictMode> : The parameter setting mode, which decides whether to inherit parameters from previous template setting or to overwrite previous settings with the new template.
-			@return error           <tuple> : error_code = error[0], error_message = error[1].
+			- @description Initializes runtime settings with the parameters obtained from a JSON string.
+			- @param  json_string     <str> : A JSON string that represents the content of the settings.
+			- @param  conflict_mode   <EnumConflictMode> : The parameter setting mode, which decides whether to inherit parameters from previous template setting or to overwrite previous settings with the new template.
+			- @return error           <tuple> : error_code = error[0], error_message = error[1].
+
 		- init_runtime_settings_with_file(json_file, conflict_mode=EnumConflictMode.CM_OVERWRITE)
-			@description Initializes runtime settings with the parameters obtained from a JSON file.
-			@param json_file        <str> : A JSON template file.
-			@param conflict_mode    <EnumConflictMode> : The parameter setting mode, which decides whether to inherit parameters from previous template setting or to overwrite previous settings with the new template.
-			@return error           <tuple> : error_code = error[0], error_message = error[1].
+			- @description Initializes runtime settings with the parameters obtained from a JSON file.
+			- @param json_file        <str> : A JSON template file.
+			- @param conflict_mode    <EnumConflictMode> : The parameter setting mode, which decides whether to inherit parameters from previous template setting or to overwrite previous settings with the new template.
+			- @return error           <tuple> : error_code = error[0], error_message = error[1].
+
 		- append_template_string_to_runtime_settings(json_string, conflict_mode)
-			@description Appends a new template string to the current runtime settings.
-			@param json_string      <str> : A JSON string that represents the content of the settings.
-			@param conflict_mode    <EnumConflictMode> : The parameter setting mode, which decides whether to inherit parameters from previous template setting or to overwrite previous settings with the new template.
-			@return error           <tuple> : error_code = error[0], error_message = error[1].
+			- @description Appends a new template string to the current runtime settings.
+			- @param json_string      <str> : A JSON string that represents the content of the settings.
+			- @param conflict_mode    <EnumConflictMode> : The parameter setting mode, which decides whether to inherit parameters from previous template setting or to overwrite previous settings with the new template.
+			- @return error           <tuple> : error_code = error[0], error_message = error[1].
+
 		- append_template_file_to_runtime_settings(json_file, conflict_mode)
-			@description Appends a new template file to the current runtime settings.
-			@param json_file        <str> : A JSON template file.
-			@param conflict_mode    <EnumConflictMode> : The parameter setting mode, which decides whether to inherit parameters from previous template setting or to overwrite previous settings with the new template.
-			@return error           <tuple> : error_code = error[0], error_message = error[1].
+			- @description Appends a new template file to the current runtime settings.
+			- @param json_file        <str> : A JSON template file.
+			- @param conflict_mode    <EnumConflictMode> : The parameter setting mode, which decides whether to inherit parameters from previous template setting or to overwrite previous settings with the new template.
+			- @return error           <tuple> : error_code = error[0], error_message = error[1].
+
 		- output_settings_to_json_string()
-			@description Outputs runtime settings to a json string.
-			@return settings_string <str> : The output string which stores the contents of current settings.
+			- @description Outputs runtime settings to a json string.
+			- @return settings_string <str> : The output string which stores the contents of current settings.
+
 		- output_settings_to_json_file(save_file_path)
-			@description Outputs runtime settings and save them into a settings file (JSON file).
-			@param save_file_path   <str> : The path of the output file which stores current settings.
-			@return error           <tuple> : error_code = error[0], error_message = error[1].
+			- @description Outputs runtime settings and save them into a settings file (JSON file).
+			- @param save_file_path   <str> : The path of the output file which stores current settings.
+			- @return error           <tuple> : error_code = error[0], error_message = error[1].
+
 		- get_all_template_names()
-			@description Gets all parameter template names.
-			@return template_names  <list[str]> : all parameter template names
+			- @description Gets all parameter template names.
+			- @return template_names  <list[str]> : all parameter template names
+
 		- decode_file(image_file_name, template_name="")
-			@description Decodes barcodes in the specified image file.
-			@param  image_file_name  <str> : A string defining the file name.
-			@param  template_name    <str> : The template name.
-			@return text_results     <list[class TextResult]> : All text results.
-			@exception BarcodeReaderError
+			- @description Decodes barcodes in the specified image file.
+			- @param  image_file_name  <str> : A string defining the file name.
+			- @param  template_name    <str> : The template name.
+			- @return text_results     <list[class TextResult]> : All text results.
+			- @exception BarcodeReaderError
+
 		- decode_buffer(image, image_pixel_format=EnumImagePixelFormat.IPF_RGB_888, template_name="")
-			@description Decodes barcodes from the memory buffer containing image pixels in defined format.
-			@param image              <class numpy.ndarray> : The image which is processed by opencv.
-			@param image_pixel_format <EnumImagePixelFormat> : The image pixel format used in the image byte array.
-			@param template_name      <str> : The template name.
-			@return text_results      <list[class TextResult]> : All text results.
-			@exception BarcodeReaderError
+			- @description Decodes barcodes from the memory buffer containing image pixels in defined format.
+			- @param image              <class numpy.ndarray> : The image which is processed by opencv.
+			- @param image_pixel_format <EnumImagePixelFormat> : The image pixel format used in the image byte array.
+			- @param template_name      <str> : The template name.
+			- @return text_results      <list[class TextResult]> : All text results.
+			- @exception BarcodeReaderError
+
 		- decode_file_stream(file_stream, template_name="")
-			@description Decodes barcodes from an image file in memory.
-			@param file_stream <bytearray> : The image file bytes in memory.
-			@return text_results     <list[class TextResult]> : All text results.
-			@exception BarcodeReaderError
+			- @description Decodes barcodes from an image file in memory.
+			- @param file_stream <bytearray> : The image file bytes in memory.
+			- @return text_results     <list[class TextResult]> : All text results.
+			- @exception BarcodeReaderError
+
 		- get_all_intermediate_results()
-			@description Returns intermediate results containing the original image, the colour clustered image, the binarized image, contours, lines, text blocks, etc.
-			@return intermediate_results      <liset[class IntermediateResult]> : All intermediate results.
+			- @description Returns intermediate results containing the original image, the colour clustered image, the binarized image, contours, lines, text blocks, etc.
+			- @return intermediate_results      <liset[class IntermediateResult]> : All intermediate results.
+
 		- init_frame_decoding_parameters()
-			@description Init frame decoding parameters.
-			@return frame_decoding_parameters <class FrameDecodingParameters> : The frame decoding parameters.
+			- @description Init frame decoding parameters.
+			- @return frame_decoding_parameters <class FrameDecodingParameters> : The frame decoding parameters.
+
 		- start_video_mode(frame_decoding_parameters, call_back_func, template_name="")
-			@description Starts a new thread to decode barcodes from the inner frame queue.
-			@param frame_decoding_parameters <class FrameDecodingParameters> : The frame decoding parameters. You can get it by init_frame_decoding_parameters(), then modify its attributes value.
-			@param call_back_func            <function pointer> : Sets callback function to process text results generated during frame decoding.
-			@param template_name             <str> : The template name.
-			@exception BarcodeReaderError
+			- @description Starts a new thread to decode barcodes from the inner frame queue.
+			- @param frame_decoding_parameters <class FrameDecodingParameters> : The frame decoding parameters. You can get it by init_frame_decoding_parameters(), then modify its attributes value.
+			- @param call_back_func            <function pointer> : Sets callback function to process text results generated during frame decoding.
+			- @param template_name             <str> : The template name.
+			- @exception BarcodeReaderError
+
 		- append_video_frame(video_frame)
-			@description Appends a video frame to the inner frame queue.
-			@param video_frame : Gets by opencv.
-			@return frame_id <int> : Current frame id.
+			- @description Appends a video frame to the inner frame queue.
+			- @param video_frame : Gets by opencv.
+			- @return frame_id <int> : Current frame id.
+
 		- stop_video_mode()
-			@description Stops the frame decoding thread created by start_video_mode().
-			@exception BarcodeReaderError
+			- @description Stops the frame decoding thread created by start_video_mode().
+			- @exception BarcodeReaderError
+
 		- get_length_of_frame_queue()
-			@description Gets current length of the inner frame queue.
-			@return frame_queue_length <int> : The length of the inner frame queue.
+			- @description Gets current length of the inner frame queue.
+			- @return frame_queue_length <int> : The length of the inner frame queue.
 	```
 
 ### Others
 
-- **Code Snippet**
+#### Code Snippet
 
 ```
 import os
@@ -544,7 +759,7 @@ else:
         print(bre)
 ```
 
-- **Mode Argument List**
+#### Mode Argument List
 
 >***You can refer to this list when you use set_mode_argument() or get_mode_argument().***
 
