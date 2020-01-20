@@ -29,13 +29,15 @@
 <support@dynamsoft.com>
 
 ### Version
-**7.3**
+- **7.3**
 >Dynamsoft Barcode Reader Python SDK 7.3 is a milestone release, which means that dbr-python is a complete product.
 
 ### Supported Platforms
-**Windows x64**
-**Linux**
-**Mac OS**
+>**Windows x64**
+
+>**Linux**
+
+>**Mac OS**
 
 ### Installation
 
