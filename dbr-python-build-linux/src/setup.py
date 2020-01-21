@@ -22,7 +22,7 @@ if sys.platform == "linux" or sys.platform == "linux2":
     dbr_lib_dir = os.path.dirname(os.path.realpath(__file__))
 elif sys.platform == "darwin":
     # OS X
-    dbr_lib_dir = '/usr/lib'
+    dbr_lib_dir = os.path.dirname(os.path.realpath(__file__))
     pass
 elif sys.platform == "win32":
     # Windows
@@ -30,15 +30,25 @@ elif sys.platform == "win32":
     dbr_lib_dir = r'..\lib'
     dbr_dll = r'..\bin'
 
-ext_args = dict(
-	include_dirs = [numpy_include],
-	library_dirs = [dbr_lib_dir],
-	extra_compile_args = ['-std=c99'],
-	extra_link_args = ["-Wl,-rpath=$ORIGIN"],
-	libraries = [dbr_lib_name]
-)
-
 if sys.platform == "linux" or sys.platform == "linux2":
+    ext_args = dict(
+        include_dirs = [numpy_include],
+        library_dirs = [dbr_lib_dir],
+        extra_compile_args = ['-std=c99'],
+        extra_link_args = ["-Wl,-rpath=$ORIGIN"],
+        libraries = [dbr_lib_name]
+    )
+elif sys.platform == "darwin":
+    ext_args = dict(
+        include_dirs = [numpy_include],
+        library_dirs = [dbr_lib_dir],
+        extra_compile_args = ['-std=c99'],
+        libraries = [dbr_lib_name]
+    )
+
+
+
+if sys.platform == "linux" or sys.platform == "linux2" or sys.platform == "darwin":
 	module_dbr = Extension('dbr', ['dbr.c'], **ext_args)
 else:
 	module_dbr = Extension('dbr', sources=['dbr.c'], include_dirs=[
@@ -48,9 +58,13 @@ else:
 class CustomInstall(install):
     def run(self):
         install.run(self)
-        if sys.platform == "linux":
+        if sys.platform == "linux" or sys.platform == "linux2":
             dst = get_python_lib()
             lib = setup_path + "/libDynamsoftBarcodeReader.so"
+            os.system("cp {} {}".format(lib, dst))
+        elif sys.platform == "darwin":
+            dst = get_python_lib()
+            lib = setup_path + "/libDynamsoftBarcodeReader.dylib"
             os.system("cp {} {}".format(lib, dst))
 
 

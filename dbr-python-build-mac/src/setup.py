@@ -63,7 +63,7 @@ class CustomInstall(install):
             lib = setup_path + "/libDynamsoftBarcodeReader.so"
             os.system("cp {} {}".format(lib, dst))
         elif sys.platform == "darwin":
-            dst = get_python_lib();
+            dst = get_python_lib()
             lib = setup_path + "/libDynamsoftBarcodeReader.dylib"
             os.system("cp {} {}".format(lib, dst))
 
