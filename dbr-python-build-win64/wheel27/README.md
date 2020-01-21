@@ -6,7 +6,7 @@
 
 ## Dynamsoft Barcode Reader - Python Edition
 
-*Dynamsoft Barcode Reader - Python Edition contains all the features of Dynamsoft Barcode Reader. It brings convenience for customers whos develop by Python. What's more, We store some examples in [Github](https://github.com/dynamsoft-dbr/python-barcode) to help you how to use it. If you have any problems, please contact us, we will provide technical support. *
+*Dynamsoft Barcode Reader - Python Edition contains all the features of Dynamsoft Barcode Reader. It brings convenience for customers whos develop by Python. What's more, We store some examples in [Github](https://github.com/dynamsoft-dbr/python-barcode) to help you how to use it. If you have any problems, please contact us, we will provide technical support.*
 
 ## Table Of Contents
 - [Contact US](#Contact-US)
