@@ -6,7 +6,7 @@
 
 ## Dynamsoft Barcode Reader - Python Edition
 
-*Dynamsoft Barcode Reader - Python Edition contains all the features of Dynamsoft Barcode Reader. It brings convenience for customers whos develop by Python. What's more, We store some examples in [Github](https://github.com/dynamsoft-dbr/python-barcode) to help you how to use it. If you have any problems, please contact us, we will provide technical support.*
+*Dynamsoft Barcode Reader - Python Edition contains all the features of Dynamsoft Barcode Reader. It brings convenience for customers whos develop in Python. What's more, there are some examples avaliable in [Github](https://github.com/dynamsoft-dbr/python-barcode), you could refer these example to build your own application. If you have any inquiries about our product, please contact us.*
 
 ## Table Of Contents
 - [Contact US](#Contact-US)
@@ -30,7 +30,7 @@
 
 ### Version
 - **7.3**
->Dynamsoft Barcode Reader Python SDK 7.3 is a milestone release, which means that dbr-python is a complete product.
+>The release of Dynamsoft Barcode Reader Python SDK 7.3 is a milestone, which means that dbr-python is a complete product fron now on.
 
 ### Supported Platforms
 - **Windows x64**
@@ -39,7 +39,7 @@
 
 - **Mac OS**
 
-### Supported Python Vesions
+### Supported Python Versions
 - **Python3.5**
 
 - **Python3.6**
@@ -717,7 +717,7 @@ import json
 from typing import List
 from dbr import *
 
-# you can change the following variables' value to your own value.
+# you can replace the following variables' value with yours.
 license_key = "Input your own license"
 #license_server = "Input the name/IP of the license server"
 json_file = r"Please input your own template path"
