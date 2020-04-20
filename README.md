@@ -6,10 +6,9 @@
 
 ## Dynamsoft Barcode Reader - Python Edition
 
-*Dynamsoft Barcode Reader - Python Edition contains all the features of Dynamsoft Barcode Reader. It brings convenience for customers who develop in Python. What's more, there are some examples avaliable in [Github](https://github.com/dynamsoft-dbr/python-barcode), you could refer to these example to build your own application. If you have any inquiries about our product, please contact us.*
+*Dynamsoft Barcode Reader - Python Edition contains all the features of Dynamsoft Barcode Reader. It brings convenience for customers who develop in Python. What's more, there are some examples avaliable in [Github](https://github.com/dynamsoft-dbr/python-barcode), you could refer to these examples to build your own application. If you have any inquiries about our product, please contact us at support@dynamsoft.com.*
 
 ## Table Of Contents
-- [Contact US](#Contact-US)
 - [Version](#Version)
 - [Supported Platforms](#Supported-Platforms)
 - [Installation](#Installation)
@@ -24,13 +23,12 @@
 - [Others](#Others)
 	- [Code Snippet](#Code-Snippet)
 	- [Mode Argument List](#Mode-Argument-List)
+- [Contact US](#Contact-US)
 
-### Contact US
-<support@dynamsoft.com>
 
 ### Version
 - **7.3**
->The release of Dynamsoft Barcode Reader Python SDK 7.3 is a milestone, which means that dbr-python is a complete product from now on.
+> Version 7.3 marks the initial release of Dynamsoft Barcode Reader Python SDK. This release is not compatible with previous versions and will require code changes in your application.
 
 ### Supported Platforms
 - **Windows x64**
@@ -54,7 +52,7 @@
 
 
 ### Supported Symbologies
-*Depending on the needs of your business, we have you covered. We support all major barcodes symbologies across a variety of industries such as government, finance, retail, warehouse inventory, and healthcare.*
+*We support all major barcodes symbologies across a variety of industries such as government, finance, retail, warehouse inventory, and healthcare.*
 
 - **Linear Barcodes (1D)** :
     - Code 39 *(including Code 39 Extended)*
@@ -93,7 +91,7 @@
 ### New Features
 >1. In version 7.3, we made significant changes to the packaging structure of the Python SDK. We added the Python layer based on the previous CPython layer encapsulation. Now the Python layer is the interface layer, which is responsible for direct interaction with developers. The CPython layer is the middle payer, which is responsible for the transformation between the C interface and the Python interface.
 
->2. The Python layer now makes full use of Python's object-oriented features. It encapsulates enumerations, structures and methods, also optimizes exception throwing and handling.
+>2. The Python layer now makes full use of Python's object-oriented features. It encapsulates enumerations, structures, methods, and also optimizes exception throwing and handling.
 
 >3. Added new samples to help you get started with our Python SDK.
 
@@ -810,3 +808,6 @@ else:
 | TextFilterModes | MinImageDimension | Sets the minimum image dimension (in pixels) to filter the text. <br> <b>Value Range : </b><br>[65536, 0x7fffffff] <br> <b>Default Value : </b><br>65536 <br> <b>Remarks: </b><br>Valid for TFM_GENERAL_CONTOUR<br>If the image dimension is larger than the given value, the library will enable the text filtering feature. Otherwise, it will skip this step when doing barcode recognition.<br>The feature can speed up the recognition process.|
 | TextFilterModes | Sensitivity | Sets the sensitivity used for text filtering. <br> <b>Value Range : </b><br>[0, 9] <br> <b>Default Value : </b><br>0 <br> <b>Remarks: </b><br>Valid for TFM_GENERAL_CONTOUR<br>0: means automatically set by the library.<br>A larger value means the library will take more effort to filter text.|
 | TextureDetectionModes | Sensitivity | Sets the sensitivity used for texture detection. <br> <b>Value Range : </b><br>[1, 9] <br> <b>Default Value : </b><br>5 <br> <b>Remarks: </b><br>Valid for TDM_GENERAL_WIDTH_CONCENTRATION<br>A larger value means the library will take more effort to detect texture.|
+
+### Contact US
+<support@dynamsoft.com>
