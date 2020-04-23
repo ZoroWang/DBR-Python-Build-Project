@@ -1,29 +1,28 @@
-# Welcome to use Dynamsoft Barcode Reader - Python Edition
+# Welcome to Dynamsoft Barcode Reader - Python Edition
 
 ![Dynamsoft](https://dynamsoft.github.io/styleguide/assets/img-icon/logo-dynamsoft-whiteBg-190x47.png "Dynamsoft")  | ![dbr](https://dynamsoft.github.io/styleguide/assets/img-icon/logo-dbr-88x88.png "dbr")
 
-**[Dynamsoft's Barcode Reader SDK](https://www.dynamsoft.com/Products/Dynamic-Barcode-Reader.aspx) enables you to efficiently embed barcode reading functionality in your web, desktop or mobile application using just a few lines of code. This can save you months of added development time and extra costs. With our SDK, you can create high-speed and reliable barcode scanner software to meet your business needs.**
+**[Dynamsoft's Barcode Reader SDK](https://www.dynamsoft.com/Products/Dynamic-Barcode-Reader.aspx) enables you to efficiently embed barcode reading functionality in your web, desktop or mobile application using just a few lines of code. Saving you months of added development time and resources, our SDK can create high-speed and reliable barcode scanner software applications to meet your business needs.**
 
 ## Dynamsoft Barcode Reader - Python Edition
 
-*Dynamsoft Barcode Reader - Python Edition contains all the features of Dynamsoft Barcode Reader. It brings convenience for customers who develop in Python. What's more, there are some examples avaliable in [Github](https://github.com/dynamsoft-dbr/python-barcode), you could refer to these examples to build your own application. If you have any inquiries about our product, please contact us at support@dynamsoft.com.*
+*Dynamsoft Barcode Reader's Python Edition comes with all the general features of Dynamsoft Barcode Reader, bringing convenience for customers who develop in Python. In addition, you could refer to the Python samples available in our [Github](https://github.com/dynamsoft-dbr/python-barcode) when building your own application. If you have any inquiries about our product, please contact us at support@dynamsoft.com.*
 
 ## Table Of Contents
 - [Version](#Version)
 - [Supported Platforms](#Supported-Platforms)
 - [Installation](#Installation)
 - [Supported Symbologies](#Supported-Symbologies)
-- [New Features](#New-Features)
-- [Improved](#Improved)
+- [Release Notes](#Release-Notes)
 - [Interfaces](#Interfaces)
 	- [Enum Interfaces](#Enum-Interfaces)
 	- [Struct Interfaces](#Struct-Interfaces)
 	- [Exception Class Interface](#Exception-Class-Interface)
 	- [Main Class Interface](#Main-Class-Interface)
-- [Others](#Others)
+- [Appendix](#Appendix)
 	- [Code Snippet](#Code-Snippet)
 	- [Mode Argument List](#Mode-Argument-List)
-- [Contact US](#Contact-US)
+- [Contact Us](#Contact-Us)
 
 
 ### Version
@@ -88,29 +87,28 @@
 	- Australian Post
 	- UK Royal Mail
 
-### New Features
+### Release Notes - all that is new and improved
 >1. In version 7.3, we made significant changes to the packaging structure of the Python SDK. We added the Python layer based on the previous CPython layer encapsulation. Now the Python layer is the interface layer, which is responsible for direct interaction with developers. The CPython layer is the middle payer, which is responsible for the transformation between the C interface and the Python interface.
 
 >2. The Python layer now makes full use of Python's object-oriented features. It encapsulates enumerations, structures, methods, and also optimizes exception throwing and handling.
 
 >3. Added new samples to help you get started with our Python SDK.
 
->4. Added a new barcode type Postal codes including USPS Intelligent Mail, Postnet, Planet, Australia Post barcode, RM4SCC.
+>4. The Python SDK can now support Postal Codes including USPS Intelligent Mail, Postnet, Planet, Australia Post barcode, RM4SCC.
 
->5. Added a new localization mode LM_STATISTICS_POSTAL_CODE in the struct PublicRuntimeSettings -> LocalizationModes to recognize Postal codes.
+>5. Added a new localization mode LM_STATISTICS_POSTAL_CODE in the struct PublicRuntimeSettings -> LocalizationModes to recognize Postal Codes.
 
->6. Implemented the feature of recognizing distorted QR barcode. It can be enabled by turning on the struct PublicRuntimeSettings -> deformation_resisting_modes.
+>6. Implemented the ability to recognize distorted QR codes. It can be can be controlled via the struct PublicRuntimeSettings -> deformation_resisting_modes.
 
->7. Implemented the feature of complementing missing parts of QR Code & DataMatrix barcodes. It can be enabled by turning on the struct PublicRuntimeSettings -> barcode_complement_modes.
+>7. Implemented the ability to complement missing parts of QR and Datamatrix codes. It can be enabled by turning on the struct PublicRuntimeSettings -> barcode_complement_modes.
 
->8. Added a new setting ScaleUpModes to set the scale-up mode for linear barcodes with small module size. It can be enabled by turning on the struct PublicRuntimeSettings -> scale_up_modes.
+>8. Added a new setting ScaleUpModes to set the scale-up mode for linear barcodes with small module size. It can be controlled via the struct PublicRuntimeSettings -> scale_up_modes.
 
->9. Added the capability to obtain accompanying texts at the top or bottom of a linear barcode. It can be enabled by turning on the struct PublicRuntimeSettings -> accompanying_text_recognition_modes.
+>9. Obtain accompanying texts that appear above or below a linear barcode. This feature can now be enabled by turning on the struct PublicRuntimeSettings -> accompanying_text_recognition_modes.
 
-### Improved
->1. Improved the decoding accuracy for DataMatrix that has a narrow quiet zone.
+>10. Improved the decoding accuracy for DataMatrix that has a narrow quiet zone.
 
->2. Improved the decoding accuracy for 1D barcode that has a small module size.
+>11. Improved the decoding accuracy for 1D barcode that has a small module size.
 
 ### Interfaces
 
@@ -703,7 +701,7 @@
 			- @return frame_queue_length <int> : The length of the inner frame queue.
 	```
 
-### Others
+### Appendix
 
 #### Code Snippet
 
@@ -809,5 +807,5 @@ else:
 | TextFilterModes | Sensitivity | Sets the sensitivity used for text filtering. <br> <b>Value Range : </b><br>[0, 9] <br> <b>Default Value : </b><br>0 <br> <b>Remarks: </b><br>Valid for TFM_GENERAL_CONTOUR<br>0: means automatically set by the library.<br>A larger value means the library will take more effort to filter text.|
 | TextureDetectionModes | Sensitivity | Sets the sensitivity used for texture detection. <br> <b>Value Range : </b><br>[1, 9] <br> <b>Default Value : </b><br>5 <br> <b>Remarks: </b><br>Valid for TDM_GENERAL_WIDTH_CONCENTRATION<br>A larger value means the library will take more effort to detect texture.|
 
-### Contact US
+### Contact Us
 <support@dynamsoft.com>
