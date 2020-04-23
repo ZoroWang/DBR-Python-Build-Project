@@ -87,7 +87,8 @@
 	- Australian Post
 	- UK Royal Mail
 
-### Release Notes - all that is new and improved
+### Release Notes 
+All that is new and improved
 >1. In version 7.3, we made significant changes to the packaging structure of the Python SDK. We added the Python layer based on the previous CPython layer encapsulation. Now the Python layer is the interface layer, which is responsible for direct interaction with developers. The CPython layer is the middle payer, which is responsible for the transformation between the C interface and the Python interface.
 
 >2. The Python layer now makes full use of Python's object-oriented features. It encapsulates enumerations, structures, methods, and also optimizes exception throwing and handling.
